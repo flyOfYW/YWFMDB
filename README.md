@@ -17,6 +17,9 @@
 * iOS 8.0 or later
 * Xcode 8.0 or later
 
+效果
+==============
+ ![image](https://github.com/flyOfYW/YWFMDB/blob/master/image/red.gif)
 
 集成
 ==============
