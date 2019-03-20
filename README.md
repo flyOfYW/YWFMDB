@@ -19,12 +19,23 @@
 
 集成
 ==============
-* 不需加密: pod 'YWFMDB'
-* 需加密数据库: pod 'YWFMDB/SQLCipher'
+**Cocoapods**
+```
+1. 不需加密: pod 'YWFMDB'
+2. 需加密数据库: pod 'YWFMDB/SQLCipher'
+```
+**手动安装**
+```
+1. 下载 YWFMDB 文件夹内的所有内容。
+2. 将 YWFMDB文件添加(拖放)到你的工程。
+3. 导入 "YWFMDB.h"。
+4、加密：需单独导入SQLCipher以及配置相关配置
+```
+
 
 注意
 ==============
-* 在需要对数据表自定义相关信息请先查看YWSqlModelProtocol协议
+- 在需要对数据表自定义相关信息请先查看YWSqlModelProtocol协议
 - 当模型类有新增/删除属性的时候需要在模型类实现sql_version并返回相应的版本号来表明有字段更新操作，YWFMDB会根据这个VERSION变更智能检查并自动更新数据库字段，无需手动更新数据库字段
 - 当模型类需要忽略属性存储字段时，请实现sql_ignoreTheField协议方法即可return要忽略属性名称集合
 - 如果自定义主键时，请实现sql_mainKey协议方法即可return主键字段（默认db_id）
