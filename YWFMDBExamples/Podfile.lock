@@ -1,0 +1,28 @@
+PODS:
+  - FMDB/SQLCipher (2.7.5):
+    - SQLCipher
+  - SQLCipher (4.0.1):
+    - SQLCipher/standard (= 4.0.1)
+  - SQLCipher/common (4.0.1)
+  - SQLCipher/standard (4.0.1):
+    - SQLCipher/common
+  - YWExcel (1.1.1)
+
+DEPENDENCIES:
+  - FMDB/SQLCipher
+  - YWExcel
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FMDB
+    - SQLCipher
+    - YWExcel
+
+SPEC CHECKSUMS:
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  SQLCipher: 4636a257060f6f1b4e143a143028b61a2b462d0d
+  YWExcel: ccbb537a35feb4cf86011c7516653fd23cd12e5a
+
+PODFILE CHECKSUM: 4ed655f01b283082b2449f9beced71a8641b5498
+
+COCOAPODS: 1.5.2

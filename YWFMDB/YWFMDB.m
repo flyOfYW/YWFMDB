@@ -1444,6 +1444,6 @@ static YWFMDB *singletonInstance = nil;
     NSLog(@"%@", [NSString stringWithFormat:@"/**********YWDBTool*************/\n YWDBTool【%@】\n /**********YWDBTool*************/",error]);
 }
 + (NSString *)version{
-    return @"0.2.1";
+    return @"0.2.2";
 }
 @end
