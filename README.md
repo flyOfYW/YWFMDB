@@ -70,3 +70,78 @@
 - (NSSet<NSString *>*)sql_ignoreTheField;
 
 ```
+使用方法
+==============
+#### 1.创建数据库
+```objective-c
+  NSString *path = [NSString stringWithFormat:@"%@/Library/Caches/YWSqlite.db",NSHomeDirectory()];
+    //创建数据库,并连接
+    [YWFMDB connectionDB:path];
+```
+#### 2.批量存储模型对象到数据库
+
+```objective-c
+ NSMutableArray *marr = @[].mutableCopy;
+        for (int i = 0; i < 5; i ++) {
+            int index = [self arcrandom];
+            YWPerson *p = [YWPerson new];
+            p.name = _names[index];
+            p.age = [_ages[index] integerValue];
+            p.phone = _phones[index];
+            p.weight = [_weights[index] floatValue];
+            p.height = [_heights[index] floatValue];
+            p.menu = _menus[index];
+            p.email = _emails[index];
+            p.qq = _qqs[index];
+            p.weChat = _qqs[index];
+            [marr addObject:p];
+        }
+        [YWFMDB storageModels:marr checkTableStructure:NO];
+```
+#### 3.更新模型指定属性的值到数据库
+```objective-c
+ [YWFMDB updateWithModel:[YWPerson class] specifiedValue:@{@"age":@"21"} checkTableStructure:NO where:@[[YWFieldFilter fieldFilterWithField:@"name" operator:eq value:@"yw"]]];
+```
+#### 4.更新模型对象到数据库
+```objective-c
+        int index = [self arcrandom];
+        YWPerson *p = [YWPerson new];
+        p.name = @"lpl";
+        p.age = [_ages[index] integerValue];
+        p.phone = _phones[index];
+        p.weight = [_weights[index] floatValue];
+        p.height = [_heights[index] floatValue];
+        p.menu = _menus[index];
+        p.email = _emails[index];
+        p.qq = _qqs[index];
+        p.weChat = _qqs[index];
+        [YWFMDB updateWithModel:p checkTableStructure:NO where:@[[YWFieldFilter fieldFilterWithField:@"name" operator:eq value:@"lpl"]]];
+```
+#### 5.删除指定条件在表中的记录
+```objective-c
+
+        [YWFMDB deleteTableWithModel:[YWPerson class] where:@[[YWFieldFilter fieldFilterWithField:@"name" operator:eq value:@"yw"]]];
+```
+#### 6.删除某个模型在数据库的记录
+```objective-c
+        [YWFMDB deleteTableWithModel:[YWPerson class]];
+```
+#### 7.查询某个模型在数据库中所有的记录
+```objective-c
+  [YWFMDB queryWithModel:[YWPerson class]]
+```
+#### 8.条件查询某个模型在数据库中所有的记录结果并排序
+```objective-c
+ //eq查询
+        list = [YWFMDB queryWithModel:[YWPerson class] where:@[[YWFieldFilter fieldFilterWithField:@"name" operator:eq value:@"yw"]]];
+        //模糊查询
+         list = [YWFMDB queryWithModel:[YWPerson class] where:@[[YWFieldFilter fieldFilterWithField:@"name" operator:like value:likeString]] order:@[[YWFieldOrder fieldOrderWithField:@"age" direction:desc]]];
+        
+```
+#### 9.条件分页查询某个模型在数据库中所有的记录
+```objective-c
+       list = [YWFMDB queryWithModel:[YWPerson class] limit:[YWPageable pageablePage:0 row:3]];
+```
+
+
+
