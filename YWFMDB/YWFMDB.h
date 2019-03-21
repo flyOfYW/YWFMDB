@@ -58,18 +58,32 @@ typedef NS_ENUM(NSInteger, YWFMDBExportType) {
 + (NSString *)version;
 //MARK: -------------------------- 存储 ------------------------------------
 /**
+ 批量存储model（1、判断表是否存在；2、开始存入数据）(默认检测model的版本号)
+ 
+ @param model model的数组
+ @return 存储成功与否
+ */
++ (BOOL)storageModels:(NSArray<NSObject*>*)model;
+/**
  批量存储model
  
  @param model model的数组
- @param isAuto 是否自动根据model的版本号检测表结构是否发生变化(新增字段或者删除字段)
+ @param isAuto 是否自动根据model的版本号检测表结构是否发生变化(新增字段或者删除字段)(根据需要选择)
  @return 存储成功与否
  */
 + (BOOL)storageModels:(NSArray<NSObject*>*)model checkTableStructure:(BOOL)isAuto;
 /**
+ 存储单个model（1、判断表是否存在；2、开始存入数据）(默认检测model的版本号)
+ 
+ @param model model的数组
+ @return 存储成功与否
+ */
++ (BOOL)storageModel:(NSObject*)model;
+/**
  存储单个model
  
  @param model model的数组
- @param isAuto 是否自动根据model的版本号检测表结构是否发生变化(新增字段或者删除字段)
+ @param isAuto 是否自动根据model的版本号检测表结构是否发生变化(新增字段或者删除字段)(根据需要选择)
  @return 存储成功与否
  */
 + (BOOL)storageModel:(NSObject*)model checkTableStructure:(BOOL)isAuto;
@@ -78,7 +92,7 @@ typedef NS_ENUM(NSInteger, YWFMDBExportType) {
  更新本地存储的model数据
  
  @param model model
- @param automatic 是否需要自动检测表是否有新增的字段（如果确定没有新增的字典，请传入NO,可以节省一定的开支）
+ @param automatic 是否需要自动检测表是否有新增的字段（如果确定没有新增的字典，请传入NO,可以节省一定的开支）(根据需要选择)
  @param wheres 筛选条件
  @return 更新成功与否
  */
@@ -88,7 +102,7 @@ typedef NS_ENUM(NSInteger, YWFMDBExportType) {
 
  @param modelClass model的类名
  @param specifiedValue 指定的值
- @param automatic 是否需要自动检测表是否有新增的字段（如果确定没有新增的字典，请传入NO,可以节省一定的开支）
+ @param automatic 是否需要自动检测表是否有新增的字段（如果确定没有新增的字典，请传入NO,可以节省一定的开支）(根据需要选择)
  @param wheres 筛选条件
  @return 更新成功与否
  */
@@ -219,9 +233,6 @@ typedef NS_ENUM(NSInteger, YWFMDBExportType) {
  @return 导出的路径
  */
 + (NSString *)exportTable:(NSString *)table type:(YWFMDBExportType)type;
-
-
-
 
 @end
 

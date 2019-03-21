@@ -21,4 +21,7 @@
 - (NSSet<NSString *>*)sql_ignoreTheField{
     return nil;
 }
+- (NSSet<NSString *>*)sql_CustomClassAsField{
+    return nil;
+}
 @end

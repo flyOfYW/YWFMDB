@@ -36,7 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
  @return 忽略的存储字段
  */
 - (NSSet<NSString *>*)sql_ignoreTheField;
-
+/**
+ 声明一个属性为自定义类的时候，用此z属性
+ 
+ @return 自定义类名
+ */
+- (NSSet<NSString *>*)sql_CustomClassAsField;
 
 @end
 NS_ASSUME_NONNULL_END

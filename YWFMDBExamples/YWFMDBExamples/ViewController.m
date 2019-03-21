@@ -10,7 +10,7 @@
 #import "YWFMDB.h"
 #import <YWExcel/YWExcelView.h>
 #import "YWPerson.h"
-
+#import <WHC_ModelSqliteKit/WHC_ModelSqlite.h>
 
 @interface ViewController ()
 <YWExcelViewDelegate,YWExcelViewDataSource>
@@ -128,6 +128,10 @@
         p.email = _emails[index];
         p.qq = _qqs[index];
         p.weChat = _qqs[index];
+        YWUser *user = [YWUser new];
+        user.userId = @(12);
+        user.userName = @"lplAndyw";
+        p.user = user;
         [YWFMDB updateWithModel:p checkTableStructure:NO where:@[[YWFieldFilter fieldFilterWithField:@"name" operator:eq value:@"lpl"]]];
     }
     [self reloadList];
@@ -351,7 +355,9 @@
     _ages = @[@"16",@"12",@"20",@"21",@"35",@"23",@"20",@"18",@"17",@"22",@"25",@"33",@"11"].mutableCopy;
     
     NSArray *list = [YWFMDB queryWithModel:[YWPerson class]];
-    
+
+//    NSArray *list1 = [WHC_ModelSqlite query:[YWPerson class]];
+
     if (!list || list.count == 0 ) {
         YWPerson *p = [YWPerson new];
         p.name = @"yw";
@@ -363,6 +369,12 @@
         p.email = @"1498627884@qq.com";
         p.qq = @"1498627884";
         p.weChat = @"13557352348";
+        p.dict = @{@"qq":@"1498627884",@"weChat":@"13557352348"};
+        YWUser *us = [YWUser new];
+        us.userName = @"测试嵌套模型";
+        us.userId = @(1);
+        p.list = @[us];
+        p.setelec = YES;
         
         YWPerson *p1 = [YWPerson new];
         p1.name = @"lpl";
@@ -374,6 +386,11 @@
         p1.email = @"1498627884@qq.com";
         p1.qq = @"1498627884";
         p1.weChat = @"13557352348";
+        p1.dict = @{@"qq":@"149884",@"weChat":@"1312990"};
+        YWUser *us1 = [YWUser new];
+        us1.userName = @"模型";
+        us1.userId = @(2);
+        p1.user = us1;
         
         YWPerson *p2 = [YWPerson new];
         p2.name = @"test";
@@ -385,9 +402,10 @@
         p2.email = @"1498627884@qq.com";
         p2.qq = @"1498627884";
         p2.weChat = @"13557352348";
-        
+
         [YWFMDB storageModels:@[p,p1,p2] checkTableStructure:NO];
         
+//        [WHC_ModelSqlite inserts:@[p,p1,p2]];
     }
     
   

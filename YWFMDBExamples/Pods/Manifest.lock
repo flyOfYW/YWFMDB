@@ -6,23 +6,29 @@ PODS:
   - SQLCipher/common (4.0.1)
   - SQLCipher/standard (4.0.1):
     - SQLCipher/common
-  - YWExcel (1.1.1)
+  - WHC_ModelSqliteKit (1.3.0):
+    - WHC_ModelSqliteKit/standard (= 1.3.0)
+  - WHC_ModelSqliteKit/standard (1.3.0)
+  - YWExcel (1.1.2)
 
 DEPENDENCIES:
   - FMDB/SQLCipher
+  - WHC_ModelSqliteKit
   - YWExcel
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FMDB
     - SQLCipher
+    - WHC_ModelSqliteKit
     - YWExcel
 
 SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   SQLCipher: 4636a257060f6f1b4e143a143028b61a2b462d0d
-  YWExcel: ccbb537a35feb4cf86011c7516653fd23cd12e5a
+  WHC_ModelSqliteKit: dfafef3ee872dedd9823395291fc80bf37eac46d
+  YWExcel: 5b43ee3e74e6ae5e4eb7841e9a08933920ce7986
 
-PODFILE CHECKSUM: 4ed655f01b283082b2449f9beced71a8641b5498
+PODFILE CHECKSUM: 03b48e4f3cfb3e914f604ca8720b8b7e05a314db
 
 COCOAPODS: 1.5.2

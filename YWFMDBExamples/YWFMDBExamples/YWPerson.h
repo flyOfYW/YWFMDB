@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "YWSqlModelProtocol.h"
 
+@class YWUser;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YWPerson : NSObject
+@interface YWPerson : NSObject <YWSqlModelProtocol>
 
 @property (nonatomic,  copy) NSString *name;
 
@@ -31,7 +33,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,   copy) NSString *weChat;
 
+@property (nonatomic,   strong) NSArray <YWUser *>*list;
+
+@property (nonatomic,   strong) NSDictionary *dict;
+
+@property (nonatomic,   assign) BOOL setelec;
+
+@property (nonatomic,   strong) YWUser *user;
+
 
 @end
+
+@interface YWUser : NSObject <NSCoding>
+
+@property (nonatomic, strong) NSNumber *userId;
+
+@property (nonatomic,   copy) NSString *userName;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

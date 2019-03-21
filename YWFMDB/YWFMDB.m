@@ -157,6 +157,15 @@ static YWFMDB *singletonInstance = nil;
 }
 //MARK: -------------------------- 存储 ------------------------------------
 /**
+ 批量存储model（1、判断表是否存在；2、开始存入数据）(默认检测model的版本号)
+ 
+ @param model model的数组
+ @return 存储成功与否
+ */
++ (BOOL)storageModels:(NSArray<NSObject*>*)model{
+    return [self storageModels:model checkTableStructure:YES];
+}
+/**
  批量存储model（1、判断表是否存在；2、开始存入数据）
  
  @param model model的数组
@@ -181,6 +190,15 @@ static YWFMDB *singletonInstance = nil;
         }
     }
     return NO;
+}
+/**
+ 存储单个model（1、判断表是否存在；2、开始存入数据）(默认检测model的版本号)
+ 
+ @param model model的数组
+ @return 存储成功与否
+ */
++ (BOOL)storageModel:(NSObject*)model{
+    return [self storageModel:model checkTableStructure:YES];
 }
 /**
  存储单个model（1、判断表是否存在；2、开始存入数据）
@@ -1197,6 +1215,9 @@ static YWFMDB *singletonInstance = nil;
     withArgumentsInArray:(NSArray *)arg
                    model:(NSObject *)obj{
     
+    if (![self tableExists:obj.sql_tableName]) {
+        return @[];
+    }
     //key-属性，value-属性的类型
     NSDictionary *propertyDict = [self propertysSetterOnModel:obj];
     NSDictionary *propertyType = [propertyDict objectForKey:@"sql"];
@@ -1291,6 +1312,7 @@ static YWFMDB *singletonInstance = nil;
     NSMutableString *proType = [[NSMutableString alloc] initWithString:@""];
     unsigned int count = 0;
     Ivar *ivarList = class_copyIvarList(obj.class, &count);
+    NSSet *customSet = nil;
     for (int i = 0; i < count; i++) {
         Ivar ivar = ivarList[i];
         /// 成员变量名称
@@ -1305,7 +1327,16 @@ static YWFMDB *singletonInstance = nil;
         NSString *ivarType = [NSString stringWithUTF8String:ivar_getTypeEncoding(ivar)];
         ivarType = [ivarType stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"@\""]];
         //获取属性的类型
-        NSString *propertyType = [NSString stringWithFormat:@"%@",[self databaseFieldTypeWithType:ivarType]];
+        NSString *propertyType = nil;
+        if (!customSet) {
+            customSet = obj.sql_CustomClassAsField;
+        }
+        if (customSet
+            && [customSet.allObjects containsObject:ivarType]) {
+            propertyType = [NSString stringWithFormat:@"%@",YW_Data];
+        }else{
+           propertyType = [NSString stringWithFormat:@"%@",[self databaseFieldTypeWithType:ivarType]];
+        }
         [proType appendString:ivarName];
         [proType appendString:@" "];
         [proType appendString:propertyType];
@@ -1342,6 +1373,50 @@ static YWFMDB *singletonInstance = nil;
         id vale = [obj valueForKey:ivarName];
         if (!vale) {
             vale = [self valueOnObj:vale ivarType:ivarType];
+        }else{
+             if ([ivarType isEqualToString:@"NSArray"]){
+                 @try {
+                     vale = [NSKeyedArchiver archivedDataWithRootObject:vale];
+                 } @catch (NSException *exception) {
+                     [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",ivarName]];
+                 } @finally {
+                     
+                 }
+            }else if ([ivarType isEqualToString:@"NSMutableArray"]){
+                @try {
+                    vale = [NSKeyedArchiver archivedDataWithRootObject:vale];
+                } @catch (NSException *exception) {
+                    [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",ivarName]];
+                } @finally {
+                    
+                }
+            }else if ([ivarType isEqualToString:@"NSDictionary"]){
+                @try {
+                    vale = [NSKeyedArchiver archivedDataWithRootObject:vale];
+                } @catch (NSException *exception) {
+                    [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",ivarName]];
+                } @finally {
+                    
+                }
+            }else if ([ivarType isEqualToString:@"NSMutableDictionary"]){
+                @try {
+                    vale = [NSKeyedArchiver archivedDataWithRootObject:vale];
+                } @catch (NSException *exception) {
+                    [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",ivarName]];
+                } @finally {
+                    
+                }
+            }else{
+                if (obj.sql_CustomClassAsField && [obj.sql_CustomClassAsField.allObjects containsObject:ivarType]) {
+                    @try {
+                        vale = [NSKeyedArchiver archivedDataWithRootObject:vale];
+                    } @catch (NSException *exception) {
+                        [self log:[NSString stringWithFormat:@"(%@) 元素没实现NSCoding协议解归档失败",ivarName]];
+                    } @finally {
+                        
+                    }
+                }
+            }
         }
         [dict setValue:vale forKey:ivarName];
         ivarType = nil;
@@ -1370,8 +1445,7 @@ static YWFMDB *singletonInstance = nil;
         // 成员变量类型
         NSString *ivarType = [NSString stringWithUTF8String:ivar_getTypeEncoding(ivar)];
         ivarType = [ivarType stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"@\""]];
-        NSString *propertyType = [NSString stringWithFormat:@"%@",[self databaseFieldTypeWithType:ivarType]];
-        [dict setValue:propertyType forKey:ivarName];
+        [dict setValue:ivarType forKey:ivarName];
         [SelDict setValue:[NSString stringWithFormat:@"set%@%@:",[ivarName substringToIndex:1].uppercaseString,[ivarName substringFromIndex:1]] forKey:ivarName];
         ivarType = nil;
     }
@@ -1394,22 +1468,71 @@ static YWFMDB *singletonInstance = nil;
      resultSet:(FMResultSet *)resultSet
           dict:(NSDictionary *)selDict{
     
-    if ([type isEqualToString:YW_String]) {
+    if ([type isEqualToString:@"NSString"]) {
         [obj setValue:[resultSet stringForColumn:key] forKey:key];
-    }else if ([type isEqualToString:YW_Number]){
+    }else if ([type isEqualToString:@"NSNumber"]){
         [obj setValue:@([resultSet doubleForColumn:key]) forKey:key];
-    }else if ([type isEqualToString:YW_Data]){
+    }else if ([type isEqualToString:@"NSData"]){
         [obj setValue:[resultSet dataForColumn:key] forKey:key];
-    }else if ([type isEqualToString:YW_Array]){
-    }else if ([type isEqualToString:YW_Dictionary]){
-    }else if ([type isEqualToString:YW_Int]){
+    }else if ([type isEqualToString:@"NSArray"]){
+        NSData *data = [resultSet dataForColumn:key];
+        @try {
+           NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            [obj setValue:arr forKey:key];
+        } @catch (NSException *exception) {
+            [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",key]];
+        } @finally {
+        }
+    }else if ([type isEqualToString:@"NSMutableArray"]){
+        NSData *data = [resultSet dataForColumn:key];
+        @try {
+            NSMutableArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            [obj setValue:arr forKey:key];
+        } @catch (NSException *exception) {
+            [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",key]];
+        } @finally {
+        }
+    }else if ([type isEqualToString:@"NSDictionary"]){
+        NSData *data = [resultSet dataForColumn:key];
+        @try {
+            NSDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            [obj setValue:dict forKey:key];
+        } @catch (NSException *exception) {
+            [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",key]];
+        } @finally {
+        }
+    }else if ([type isEqualToString:@"NSMutableDictionary"]){
+        NSData *data = [resultSet dataForColumn:key];
+        @try {
+            NSMutableDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            [obj setValue:dict forKey:key];
+        } @catch (NSException *exception) {
+            [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",key]];
+        } @finally {
+        }
+    }else if ([type isEqualToString:@"q"]){
         ((void (*)(id, SEL, int64_t))(void *) objc_msgSend)(obj, NSSelectorFromString(selDict[key]), [resultSet intForColumn:key]);
-    }else if ([type isEqualToString:YW_Boolean]){
-        ((void (*)(id, SEL, int))(void *) objc_msgSend)(obj, NSSelectorFromString(selDict[key]), [resultSet intForColumn:key]);
-    }else if ([type isEqualToString:YW_Double]){
-        ((void (*)(id, SEL, double))(void *) objc_msgSend)(obj, NSSelectorFromString(selDict[key]), [resultSet doubleForColumn:key]);
-    }else if ([type isEqualToString:YW_Float]){
+    }else if ([type isEqualToString:@"i"]){
+        ((void (*)(id, SEL, int64_t))(void *) objc_msgSend)(obj, NSSelectorFromString(selDict[key]), [resultSet intForColumn:key]);
+    }else if ([type isEqualToString:@"Q"]){
+        ((void (*)(id, SEL, int64_t))(void *) objc_msgSend)(obj, NSSelectorFromString(selDict[key]), [resultSet intForColumn:key]);
+    }else if ([type isEqualToString:@"f"]){
         ((void (*)(id, SEL, float))(void *) objc_msgSend)(obj, NSSelectorFromString(selDict[key]), [resultSet doubleForColumn:key]);
+    }else if ([type isEqualToString:@"d"]){
+        ((void (*)(id, SEL, float))(void *) objc_msgSend)(obj, NSSelectorFromString(selDict[key]), [resultSet doubleForColumn:key]);
+    }else if ([type isEqualToString:@"B"]){
+        ((void (*)(id, SEL, int64_t))(void *) objc_msgSend)(obj, NSSelectorFromString(selDict[key]), [resultSet intForColumn:key]);
+    }else{
+        if (obj.sql_CustomClassAsField && [obj.sql_CustomClassAsField.allObjects containsObject:type]) {
+            NSData *data = [resultSet dataForColumn:key];
+            @try {
+                id dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                [obj setValue:dict forKey:key];
+            } @catch (NSException *exception) {
+                [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",key]];
+            } @finally {
+            }
+        }
     }
 }
 + (NSString *)databaseFieldTypeWithType:(NSString *)type{
@@ -1419,10 +1542,26 @@ static YWFMDB *singletonInstance = nil;
         return YW_Int;
     }else if([type isEqualToString:@"Q"]){
         return YW_Int;
+    }else if([type isEqualToString:@"f"]){
+        return YW_Float;
+    }else if([type isEqualToString:@"d"]){
+        return YW_Float;
+    }else if([type isEqualToString:@"B"]){//布尔类型
+        return YW_Boolean;
     }else if([type isEqualToString:@"NSString"]){
         return YW_String;
     }else if([type isEqualToString:@"NSNumber"]){
         return YW_Number;
+    }else if([type isEqualToString:@"NSData"]){
+        return YW_Data;
+    }else if([type isEqualToString:@"NSArray"]){
+        return YW_Array;
+    }else if([type isEqualToString:@"NSMutableArray"]){
+        return YW_MutableArray;
+    }else if([type isEqualToString:@"NSDictionary"]){
+        return YW_Dictionary;
+    }else if([type isEqualToString:@"NSMutableDictionary"]){
+        return YW_MutableDictionary;
     }
     return YW_String;
 }
@@ -1434,16 +1573,27 @@ static YWFMDB *singletonInstance = nil;
         value = @0;
     }else if ([ivarType isEqualToString:@"NSData"]){
         value = [NSData data];
+    }else if ([ivarType isEqualToString:@"NSArray"]){
+        value = [NSKeyedArchiver archivedDataWithRootObject:@[]];
+    }else if ([ivarType isEqualToString:@"NSMutableArray"]){
+        value = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray new]];
+    }else if ([ivarType isEqualToString:@"NSDictionary"]){
+        value = [NSKeyedArchiver archivedDataWithRootObject:@{}];
+    }else if ([ivarType isEqualToString:@"NSMutableDictionary"]){
+        value = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableDictionary new]];
     }
+//    else{
+//        vale = [NSNull null];
+//    }
     return value;
 }
 + (NSString *)dbPath{//默路径
     return [NSString stringWithFormat:@"%@/Library/Caches/YWSqlite.db",NSHomeDirectory()];
 }
 + (void)log:(NSString *)error{
-    NSLog(@"%@", [NSString stringWithFormat:@"/**********YWDBTool*************/\n YWDBTool【%@】\n /**********YWDBTool*************/",error]);
+    NSLog(@"%@", [NSString stringWithFormat:@"\n/**********YWDBTool*************/\n YWDBTool【%@】\n /**********YWDBTool*************/",error]);
 }
 + (NSString *)version{
-    return @"0.2.2";
+    return @"0.3.0";
 }
 @end

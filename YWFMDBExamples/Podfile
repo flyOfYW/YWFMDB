@@ -7,5 +7,6 @@ target 'YWFMDBExamples' do
  
 pod 'FMDB/SQLCipher'
 pod 'YWExcel'
+pod 'WHC_ModelSqliteKit'
 
 end
