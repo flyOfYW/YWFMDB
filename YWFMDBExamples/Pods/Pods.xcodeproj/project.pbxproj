@@ -7,68 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B67D7A0254BCEE7B53E7C89DBB7107F /* YWExcelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D71D07862BEAB4653730A5CDC1777E /* YWExcelView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0B7F40176683C16B64500D551C7B0D96 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7570261E6ACC7105B21202B26AE43D97 /* Security.framework */; };
-		1984B9F0219DE984383CA07AD6E836D1 /* YWExcel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC37F7D961DDD3FBDA97BCC0741F277 /* YWExcel-dummy.m */; };
-		20FD9AFD6219615ED90E0415FCE8B5B4 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D401C70070D1A07D6B824757415C6F2 /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3A8D74E9A2BAE456000709FC527F9432 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 433941D78070A45DBC7E6B081AD23FBA /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1CEA8192B26959E36F81171382DDEFED /* YWIndexPath.h in Headers */ = {isa = PBXBuildFile; fileRef = A2834F40DB0A19B2D15818BB20A76F77 /* YWIndexPath.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		20FD9AFD6219615ED90E0415FCE8B5B4 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 09C40235199FA53FFC8C35563CB4BB21 /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3892251431E601F3295C4E527DB86216 /* YWExcelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 24AE03737E3BBAE8624E341C0058A469 /* YWExcelCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3A8D74E9A2BAE456000709FC527F9432 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F5E57D40B4BF7431CC85454C60B699B /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3CF4776B187E0F09F324516380885F86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDC2E512ACD5CB722F7ADF14560309F /* Foundation.framework */; };
-		484B47422C0B03C860D72FED43430A2F /* YWTableViewHeadView.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B13CEDAF48B4573E7745F3B04969BA /* YWTableViewHeadView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4B2AE840C023CB64D61AC8FFC66965B9 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB07FFB79F26D84759B51613A3F229 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		5AC5D7A41BD13ED4193FB4A54E756822 /* WHC_ModelSqlite.h in Headers */ = {isa = PBXBuildFile; fileRef = FBD9A54921279C81AD3269EEA6C8A3EF /* WHC_ModelSqlite.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		65B064DCD8D736AF94FB7BA2EF503EFD /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 649A4FDD7CFD77B650CE39E44152F043 /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6FFA5B895C9FDEBE214326166A7F3A1A /* YWExcelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 95579D9F389DA07935B41CF70031F0B8 /* YWExcelCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7759A3E0187AA4E741F055C44B5C795D /* YWIndexPath.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BAEF15F1D4CF45B8EFCB3E5EF62F97E /* YWIndexPath.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7B454C066EF93964529664F4900FECCF /* YWTableViewHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3429367165FF11BB32EAD2FC9ECC00A /* YWTableViewHeadView.m */; };
-		7D700A340CF9C1C5D8C3E44C38612546 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 012A096ED5801ECDC0A7832DC4E67840 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-DNDEBUG -DSQLITE_HAS_CODEC -DSQLITE_TEMP_STORE=2 -DSQLITE_SOUNDEX -DSQLITE_THREADSAFE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STAT3 -DSQLITE_ENABLE_STAT4 -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_MEMORY_MANAGEMENT -DSQLITE_ENABLE_LOAD_EXTENSION -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS4_UNICODE61 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_UNLOCK_NOTIFY -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_FTS5 -DSQLCIPHER_CRYPTO_CC -DHAVE_USLEEP=1 -DSQLITE_MAX_VARIABLE_NUMBER=99999 -fno-objc-arc"; }; };
-		7EFB5907D77292A2DF2FA9DA91EE2242 /* Pods-YWFMDBExamples-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6DAACD02D0E569A2AE732A78864A1F /* Pods-YWFMDBExamples-dummy.m */; };
-		84A22F95179F3D38B10C0CFD30233F95 /* YWExcelViewMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF8E5BD8D9099803CB22E279FC495C /* YWExcelViewMode.m */; };
-		89B673948A8C1C939CD7A97736C12EB6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1E8076C94AAC58FA4ED78E9C58320D /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		9AC0779493C89582A11CA5C40C38AAF9 /* YWExcelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3741267E399401DCA1A1CAA3D1FCF0 /* YWExcelCell.m */; };
-		9AE0A6B47ACCEF152C8567F408D63C25 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B20D68CF36EEB24014550E8CACC4248 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		A876562F873DB7F233913D77EF064A07 /* YWExcelView.h in Headers */ = {isa = PBXBuildFile; fileRef = FE1D66BAE47817B3952A026884DAC461 /* YWExcelView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B291EC0D30EDD6143E09F7E4B9BE9DB9 /* YWExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA6C4D8CA15007B2EC3614D2DD4E568 /* YWExcelView.m */; };
-		B2D286F1081535205CEEC0B7D60F4A27 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C14E9F711FCF8B771D86825AC2EA5 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B40AE8BB3D9142285FD42B07A549648F /* FMDB-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2059EC65F3A82D8F231156D62CF8DA44 /* FMDB-dummy.m */; };
-		B4827A5D756FF37E05495871238990EB /* WHC_ModelSqliteKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB63419380DF0EFB9CBA12390834C5E /* WHC_ModelSqliteKit-dummy.m */; };
-		BB5236B92C68C277A1B337FD568AFDE3 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FB08F30663FDBDDF909B9F13F45332 /* sqlite3.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BE4D3AB1D1CF02600E4173DA1FF90A7A /* YWExcelViewMode.h in Headers */ = {isa = PBXBuildFile; fileRef = CEACE004F483DEE07232FF6CB10C33CB /* YWExcelViewMode.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C79096A9870F1CDC8FB85EE6E8933221 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = C08A9EB6B702A29C2E4E59B57A4F7140 /* FMDB.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C79CBFD6EEBAB3B7A43ECEDC756F434A /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0069B0457FD575FDA2A5F712121865B8 /* WHC_ModelSqlite.m */; };
-		E056C705856F09969C81610B99245FEF /* YWIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBDBDB4851475B05E05DE1BA59CD31 /* YWIndexPath.m */; };
-		E5FC8656E0FB53DEF3F7BEDE3313B855 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 234C7F6BD187E56ADE9864A3B18AB3C3 /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E6FB2E94895075BBB48D6BDC19F1B2BB /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = A314E0D57E9F93B6E62ABF104E7BEF67 /* FMDatabase.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E968F8D3AF4E9AB9DBC08D2B6AE32E4D /* SQLCipher-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56DE7833C64F3F2686BFFF6A7228CD /* SQLCipher-dummy.m */; };
-		F432EC834A74B3334600DE8E5E4603BF /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 54679BB9A64C6AA9E4A7230FA08BC767 /* FMResultSet.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4B2AE840C023CB64D61AC8FFC66965B9 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = F792DCD692793514DA071A215411199B /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		61256581D686690F2C4118444F4460F2 /* YWTableViewHeadView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C4423FF6DD1624A253459EF69631BDD /* YWTableViewHeadView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		65B064DCD8D736AF94FB7BA2EF503EFD /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 62B9261C9B99027C27D662174A19A3E3 /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		752DE1A913BD7EAA6E7DEF8A940D4485 /* YWExcelViewMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 48AE6BE13B0CAA4C5BE42FF0CC63083B /* YWExcelViewMode.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7D700A340CF9C1C5D8C3E44C38612546 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F21781EFAB65DAA0AFDD9E65F7D1B5A /* sqlite3.c */; settings = {COMPILER_FLAGS = "-DNDEBUG -DSQLITE_HAS_CODEC -DSQLITE_TEMP_STORE=2 -DSQLITE_SOUNDEX -DSQLITE_THREADSAFE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STAT3 -DSQLITE_ENABLE_STAT4 -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_MEMORY_MANAGEMENT -DSQLITE_ENABLE_LOAD_EXTENSION -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS4_UNICODE61 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_UNLOCK_NOTIFY -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_FTS5 -DSQLCIPHER_CRYPTO_CC -DHAVE_USLEEP=1 -DSQLITE_MAX_VARIABLE_NUMBER=99999 -fno-objc-arc"; }; };
+		83119589B6BA0073D848408F1C73CD68 /* Pods-YWFMDBExamples-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6DAACD02D0E569A2AE732A78864A1F /* Pods-YWFMDBExamples-dummy.m */; };
+		89B673948A8C1C939CD7A97736C12EB6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FCC369B91EB69E2F6B63C041A1DC56 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9AE0A6B47ACCEF152C8567F408D63C25 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B71DB054F34CEDE8DE9CF6BE199FBD5 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B0065FFDE3B7D6211A5AFB401B918D2E /* YWExcelViewMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4AD1CFA4706D7CF3F2460888AD5C8D /* YWExcelViewMode.m */; };
+		B2D286F1081535205CEEC0B7D60F4A27 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E645058D52D9ED9E3232EC92B7479015 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B40AE8BB3D9142285FD42B07A549648F /* FMDB-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DEC98AC9A666B20DC92C5A332AB8B /* FMDB-dummy.m */; };
+		BB5236B92C68C277A1B337FD568AFDE3 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B7C864352DEB56030E198DE805341B /* sqlite3.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C37856B3F6361FA8FADE35ABC92DACB9 /* YWExcelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9AE794555DC29E34F87CD9C3C57B73 /* YWExcelCell.m */; };
+		C79096A9870F1CDC8FB85EE6E8933221 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = B71D6C588AA3A4A945844EE1D62AF0F3 /* FMDB.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CA2E2523C5539C6A06311AF13F10B684 /* YWTableViewHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B56C1B9EDB775F559D3C19AE70C8C1 /* YWTableViewHeadView.m */; };
+		D9850B6CF9DFBD4B66A18A900A63B4C1 /* YWExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = D190755B9D27CD71BC4D8C71F103A9A5 /* YWExcelView.m */; };
+		E5FC8656E0FB53DEF3F7BEDE3313B855 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7389455CF60B3428E0114A4B84C2769E /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E6FB2E94895075BBB48D6BDC19F1B2BB /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DCC0E30CD4D1EF7B5F247D0763AEBF8 /* FMDatabase.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E968F8D3AF4E9AB9DBC08D2B6AE32E4D /* SQLCipher-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E723B68BBF6435153CD4A3AF6E8E8E /* SQLCipher-dummy.m */; };
+		F432EC834A74B3334600DE8E5E4603BF /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B995785046B1F0C2D99ABA556BC8270 /* FMResultSet.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F91A1879CB8D19D5994CB06EB78DFF59 /* YWIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E0F86FA94AEB42656A1C2A405F644 /* YWIndexPath.m */; };
+		FB84D73CDBB87ACB7AED23D9BC0B3EE4 /* YWExcel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 65603C8434A6672C49664F3D5A257586 /* YWExcel-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9CC373857012C2D6868C7D560A06103D /* PBXContainerItemProxy */ = {
+		3A1D7F9C7D5865B3DFEB8F08B1188A0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C7E40E341D246AAEB4DA0A3317D0C816;
 			remoteInfo = FMDB;
 		};
-		A088C69E21E8C70DC1E77D772A7AE1D1 /* PBXContainerItemProxy */ = {
+		4E1A7B5E785A77C619C87518448645F5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F966B3E960E47AA3E73A44E9BDB1CFAA;
+			remoteGlobalIDString = E75947B739293681C7CE1B49A6B5BF6B;
 			remoteInfo = YWExcel;
 		};
-		B250639BB7917D24FF97BB22FE6082E5 /* PBXContainerItemProxy */ = {
+		9C667C5E7088B33E6A77825E91FDD7C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F71D9A7858A28D39544AD9A929AB4925;
 			remoteInfo = SQLCipher;
-		};
-		BC0963A08E48A552388AB03021E21E31 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EA670A8AAF58A8E92E107AF9F852452F;
-			remoteInfo = WHC_ModelSqliteKit;
 		};
 		F52BE28B43814937366BE8D42EF673B7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -80,58 +70,52 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0069B0457FD575FDA2A5F712121865B8 /* WHC_ModelSqlite.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = WHC_ModelSqlite.m; path = WHC_ModelSqliteKit/WHC_ModelSqliteKit/WHC_ModelSqlite.m; sourceTree = "<group>"; };
-		012A096ED5801ECDC0A7832DC4E67840 /* sqlite3.c */ = {isa = PBXFileReference; includeInIndex = 1; path = sqlite3.c; sourceTree = "<group>"; };
 		03FD365DDA6CCB4CE128ECF27B495A6B /* Pods-YWFMDBExamples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YWFMDBExamples.debug.xcconfig"; sourceTree = "<group>"; };
-		0A7C9DD45C0E9F667C2CA696B42C2AAC /* FMDB-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-prefix.pch"; sourceTree = "<group>"; };
-		0B4310E27A594F61DA78CD6B2A6772CE /* FMDB.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FMDB.xcconfig; sourceTree = "<group>"; };
-		1FFBDBDB4851475B05E05DE1BA59CD31 /* YWIndexPath.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWIndexPath.m; path = YWExcelView/YWIndexPath.m; sourceTree = "<group>"; };
-		2059EC65F3A82D8F231156D62CF8DA44 /* FMDB-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FMDB-dummy.m"; sourceTree = "<group>"; };
-		234C7F6BD187E56ADE9864A3B18AB3C3 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
-		2FDF8E5BD8D9099803CB22E279FC495C /* YWExcelViewMode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWExcelViewMode.m; path = YWExcelView/YWExcelViewMode.m; sourceTree = "<group>"; };
-		2FFB07FFB79F26D84759B51613A3F229 /* FMDatabasePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
-		33D0FEEE5027CCE00B99172AFAA04A57 /* libYWExcel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libYWExcel.a; path = libYWExcel.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AB63419380DF0EFB9CBA12390834C5E /* WHC_ModelSqliteKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WHC_ModelSqliteKit-dummy.m"; sourceTree = "<group>"; };
-		3B20D68CF36EEB24014550E8CACC4248 /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
+		092C31F1AE65AF44C4446E71A1CA4D28 /* SQLCipher.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SQLCipher.xcconfig; sourceTree = "<group>"; };
+		09C40235199FA53FFC8C35563CB4BB21 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		0B5A8F4D98A170770AE5383B29E3FC44 /* FMDB-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-prefix.pch"; sourceTree = "<group>"; };
+		0C4AD1CFA4706D7CF3F2460888AD5C8D /* YWExcelViewMode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWExcelViewMode.m; path = YWExcelView/YWExcelViewMode.m; sourceTree = "<group>"; };
+		0F175EB36EEE1780C1FEB5FBE44F2E52 /* YWExcel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YWExcel-prefix.pch"; sourceTree = "<group>"; };
+		1DCC0E30CD4D1EF7B5F247D0763AEBF8 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		24AE03737E3BBAE8624E341C0058A469 /* YWExcelCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWExcelCell.h; path = YWExcelView/YWExcelCell.h; sourceTree = "<group>"; };
+		2E7DEC98AC9A666B20DC92C5A332AB8B /* FMDB-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FMDB-dummy.m"; sourceTree = "<group>"; };
+		3A0C1385E538374E6D90D3DCCA7F531D /* SQLCipher-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SQLCipher-prefix.pch"; sourceTree = "<group>"; };
+		3B71DB054F34CEDE8DE9CF6BE199FBD5 /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		3D6DAACD02D0E569A2AE732A78864A1F /* Pods-YWFMDBExamples-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YWFMDBExamples-dummy.m"; sourceTree = "<group>"; };
-		40FB08F30663FDBDDF909B9F13F45332 /* sqlite3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
-		433941D78070A45DBC7E6B081AD23FBA /* FMDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
-		45107E19C5F1254E802E70170BD90DEB /* YWExcel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YWExcel-prefix.pch"; sourceTree = "<group>"; };
-		4B1C14E9F711FCF8B771D86825AC2EA5 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
-		4E212164D04C0244DA71C7890EB7932A /* libWHC_ModelSqliteKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libWHC_ModelSqliteKit.a; path = libWHC_ModelSqliteKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F56DE7833C64F3F2686BFFF6A7228CD /* SQLCipher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SQLCipher-dummy.m"; sourceTree = "<group>"; };
-		54679BB9A64C6AA9E4A7230FA08BC767 /* FMResultSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
-		58A8991F5F5E7E817ABF693235291FD6 /* SQLCipher.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SQLCipher.xcconfig; sourceTree = "<group>"; };
-		5B1E8076C94AAC58FA4ED78E9C58320D /* FMDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
-		5D401C70070D1A07D6B824757415C6F2 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
-		62E7489A24559E8ACB6FB468B279C837 /* YWExcel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YWExcel.xcconfig; sourceTree = "<group>"; };
-		649A4FDD7CFD77B650CE39E44152F043 /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
+		48AE6BE13B0CAA4C5BE42FF0CC63083B /* YWExcelViewMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWExcelViewMode.h; path = YWExcelView/YWExcelViewMode.h; sourceTree = "<group>"; };
+		4D94C4B704BB999A5570B985E566DA72 /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFMDB.a; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5E57D40B4BF7431CC85454C60B699B /* FMDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
+		5FE4FA3263699FE34D0205D8B304F017 /* libPods-YWFMDBExamples.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-YWFMDBExamples.a"; path = "libPods-YWFMDBExamples.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		62B9261C9B99027C27D662174A19A3E3 /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
+		65603C8434A6672C49664F3D5A257586 /* YWExcel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YWExcel-dummy.m"; sourceTree = "<group>"; };
+		65FCC369B91EB69E2F6B63C041A1DC56 /* FMDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
+		6D1E0F86FA94AEB42656A1C2A405F644 /* YWIndexPath.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWIndexPath.m; path = YWExcelView/YWIndexPath.m; sourceTree = "<group>"; };
+		7389455CF60B3428E0114A4B84C2769E /* FMDatabaseQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
+		74D71D07862BEAB4653730A5CDC1777E /* YWExcelView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWExcelView.h; path = YWExcelView/YWExcelView.h; sourceTree = "<group>"; };
 		7570261E6ACC7105B21202B26AE43D97 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		7B1494BBA37F450BC959D1BDE739ACB3 /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFMDB.a; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		78B7C864352DEB56030E198DE805341B /* sqlite3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
+		7B995785046B1F0C2D99ABA556BC8270 /* FMResultSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
 		8385F18A71522EC0EAB0772E58AD9DC4 /* Pods-YWFMDBExamples-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YWFMDBExamples-resources.sh"; sourceTree = "<group>"; };
+		84DDCBA66E04DFD27BFAF8B6C9F296FF /* YWExcel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YWExcel.xcconfig; sourceTree = "<group>"; };
+		84E723B68BBF6435153CD4A3AF6E8E8E /* SQLCipher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SQLCipher-dummy.m"; sourceTree = "<group>"; };
 		884F336F1CD7A4426322BF099BD75E57 /* Pods-YWFMDBExamples-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YWFMDBExamples-frameworks.sh"; sourceTree = "<group>"; };
-		920B92E185E3F611BFDD98CA064C9D17 /* libPods-YWFMDBExamples.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-YWFMDBExamples.a"; path = "libPods-YWFMDBExamples.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		953F93461609BD5E5A0B68618E5309DE /* WHC_ModelSqliteKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WHC_ModelSqliteKit.xcconfig; sourceTree = "<group>"; };
-		95579D9F389DA07935B41CF70031F0B8 /* YWExcelCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWExcelCell.h; path = YWExcelView/YWExcelCell.h; sourceTree = "<group>"; };
-		9BAEF15F1D4CF45B8EFCB3E5EF62F97E /* YWIndexPath.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWIndexPath.h; path = YWExcelView/YWIndexPath.h; sourceTree = "<group>"; };
-		9CC37F7D961DDD3FBDA97BCC0741F277 /* YWExcel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YWExcel-dummy.m"; sourceTree = "<group>"; };
-		A314E0D57E9F93B6E62ABF104E7BEF67 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		9C4423FF6DD1624A253459EF69631BDD /* YWTableViewHeadView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWTableViewHeadView.h; path = YWExcelView/YWTableViewHeadView.h; sourceTree = "<group>"; };
+		9F21781EFAB65DAA0AFDD9E65F7D1B5A /* sqlite3.c */ = {isa = PBXFileReference; includeInIndex = 1; path = sqlite3.c; sourceTree = "<group>"; };
+		A2834F40DB0A19B2D15818BB20A76F77 /* YWIndexPath.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWIndexPath.h; path = YWExcelView/YWIndexPath.h; sourceTree = "<group>"; };
+		B4B56C1B9EDB775F559D3C19AE70C8C1 /* YWTableViewHeadView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWTableViewHeadView.m; path = YWExcelView/YWTableViewHeadView.m; sourceTree = "<group>"; };
+		B71D6C588AA3A4A945844EE1D62AF0F3 /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
 		B979F20DE7EAA2B5683C976D352268D9 /* Pods-YWFMDBExamples-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YWFMDBExamples-acknowledgements.plist"; sourceTree = "<group>"; };
-		BC3741267E399401DCA1A1CAA3D1FCF0 /* YWExcelCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWExcelCell.m; path = YWExcelView/YWExcelCell.m; sourceTree = "<group>"; };
-		C08A9EB6B702A29C2E4E59B57A4F7140 /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
+		BD9AE794555DC29E34F87CD9C3C57B73 /* YWExcelCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWExcelCell.m; path = YWExcelView/YWExcelCell.m; sourceTree = "<group>"; };
 		C201CD8F0F8542A4A0BCFE062656152F /* Pods-YWFMDBExamples-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-YWFMDBExamples-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C37A66CB18D96CBCDF8E5D591DA1D805 /* Pods-YWFMDBExamples.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YWFMDBExamples.release.xcconfig"; sourceTree = "<group>"; };
-		CEACE004F483DEE07232FF6CB10C33CB /* YWExcelViewMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWExcelViewMode.h; path = YWExcelView/YWExcelViewMode.h; sourceTree = "<group>"; };
-		CEC0ED66597A4EBAD9425623139C4F33 /* WHC_ModelSqliteKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WHC_ModelSqliteKit-prefix.pch"; sourceTree = "<group>"; };
 		CEDC2E512ACD5CB722F7ADF14560309F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D6FF1E8303D5D75870432C5E09B5631C /* SQLCipher-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SQLCipher-prefix.pch"; sourceTree = "<group>"; };
-		DFAC078255B2D5A8FBF93D1091E0EB4C /* libSQLCipher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSQLCipher.a; path = libSQLCipher.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2B13CEDAF48B4573E7745F3B04969BA /* YWTableViewHeadView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWTableViewHeadView.h; path = YWExcelView/YWTableViewHeadView.h; sourceTree = "<group>"; };
-		EBA6C4D8CA15007B2EC3614D2DD4E568 /* YWExcelView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWExcelView.m; path = YWExcelView/YWExcelView.m; sourceTree = "<group>"; };
-		F3429367165FF11BB32EAD2FC9ECC00A /* YWTableViewHeadView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWTableViewHeadView.m; path = YWExcelView/YWTableViewHeadView.m; sourceTree = "<group>"; };
-		FBD9A54921279C81AD3269EEA6C8A3EF /* WHC_ModelSqlite.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WHC_ModelSqlite.h; path = WHC_ModelSqliteKit/WHC_ModelSqliteKit/WHC_ModelSqlite.h; sourceTree = "<group>"; };
-		FE1D66BAE47817B3952A026884DAC461 /* YWExcelView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWExcelView.h; path = YWExcelView/YWExcelView.h; sourceTree = "<group>"; };
+		D190755B9D27CD71BC4D8C71F103A9A5 /* YWExcelView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWExcelView.m; path = YWExcelView/YWExcelView.m; sourceTree = "<group>"; };
+		D75300CB944D9451DB50FD5A0CE2E9F2 /* libYWExcel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libYWExcel.a; path = libYWExcel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E645058D52D9ED9E3232EC92B7479015 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		EB676EE0B8F7C4D3413521A9C5BB07D0 /* libSQLCipher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSQLCipher.a; path = libSQLCipher.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F792DCD692793514DA071A215411199B /* FMDatabasePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
+		F96AD1E10114D07B297A9CC50378C668 /* FMDB.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FMDB.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,21 +126,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		867F883714E47CB81DE3A0C5B9DE8617 /* Frameworks */ = {
+		8DBEDC247EFEB04266923257827C34DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		88F18FFCD409742C323944D412E6DB08 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D9B73FFB14001021F407BE399D72DE24 /* Frameworks */ = {
+		C4A8CAFB67267DF6B61B083FE8F4EDB3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -175,74 +152,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00AC98F1896A23D16398280BAE09C658 /* Support Files */ = {
+		176D0216B65384BF5EB6E56663118454 /* YWExcel */ = {
 			isa = PBXGroup;
 			children = (
-				62E7489A24559E8ACB6FB468B279C837 /* YWExcel.xcconfig */,
-				9CC37F7D961DDD3FBDA97BCC0741F277 /* YWExcel-dummy.m */,
-				45107E19C5F1254E802E70170BD90DEB /* YWExcel-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/YWExcel";
-			sourceTree = "<group>";
-		};
-		14BC3C25BDC7E226E24DB9563DDD4DBE /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				58A8991F5F5E7E817ABF693235291FD6 /* SQLCipher.xcconfig */,
-				4F56DE7833C64F3F2686BFFF6A7228CD /* SQLCipher-dummy.m */,
-				D6FF1E8303D5D75870432C5E09B5631C /* SQLCipher-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SQLCipher";
-			sourceTree = "<group>";
-		};
-		1933DC80E4034F0AC34ECBF0DBEF988F /* YWExcel */ = {
-			isa = PBXGroup;
-			children = (
-				95579D9F389DA07935B41CF70031F0B8 /* YWExcelCell.h */,
-				BC3741267E399401DCA1A1CAA3D1FCF0 /* YWExcelCell.m */,
-				FE1D66BAE47817B3952A026884DAC461 /* YWExcelView.h */,
-				EBA6C4D8CA15007B2EC3614D2DD4E568 /* YWExcelView.m */,
-				CEACE004F483DEE07232FF6CB10C33CB /* YWExcelViewMode.h */,
-				2FDF8E5BD8D9099803CB22E279FC495C /* YWExcelViewMode.m */,
-				9BAEF15F1D4CF45B8EFCB3E5EF62F97E /* YWIndexPath.h */,
-				1FFBDBDB4851475B05E05DE1BA59CD31 /* YWIndexPath.m */,
-				E2B13CEDAF48B4573E7745F3B04969BA /* YWTableViewHeadView.h */,
-				F3429367165FF11BB32EAD2FC9ECC00A /* YWTableViewHeadView.m */,
-				00AC98F1896A23D16398280BAE09C658 /* Support Files */,
+				24AE03737E3BBAE8624E341C0058A469 /* YWExcelCell.h */,
+				BD9AE794555DC29E34F87CD9C3C57B73 /* YWExcelCell.m */,
+				74D71D07862BEAB4653730A5CDC1777E /* YWExcelView.h */,
+				D190755B9D27CD71BC4D8C71F103A9A5 /* YWExcelView.m */,
+				48AE6BE13B0CAA4C5BE42FF0CC63083B /* YWExcelViewMode.h */,
+				0C4AD1CFA4706D7CF3F2460888AD5C8D /* YWExcelViewMode.m */,
+				A2834F40DB0A19B2D15818BB20A76F77 /* YWIndexPath.h */,
+				6D1E0F86FA94AEB42656A1C2A405F644 /* YWIndexPath.m */,
+				9C4423FF6DD1624A253459EF69631BDD /* YWTableViewHeadView.h */,
+				B4B56C1B9EDB775F559D3C19AE70C8C1 /* YWTableViewHeadView.m */,
+				E1548F2D963F42227E6FCB8437249734 /* Support Files */,
 			);
 			name = YWExcel;
 			path = YWExcel;
 			sourceTree = "<group>";
 		};
-		28AB91879FD8D24F6915C0FA4945FBD5 /* FMDB */ = {
+		36806237851B8376D6631D3CA8F18A75 /* SQLCipher */ = {
 			isa = PBXGroup;
 			children = (
-				B9683916307E3B5085C470A32878F982 /* SQLCipher */,
-				A7E493AAC9D93BB7FB5DFB0BB0804422 /* Support Files */,
-			);
-			name = FMDB;
-			path = FMDB;
-			sourceTree = "<group>";
-		};
-		32E59E7C573AAB9246CF68DC8D3A36AB /* WHC_ModelSqliteKit */ = {
-			isa = PBXGroup;
-			children = (
-				FBD9A54921279C81AD3269EEA6C8A3EF /* WHC_ModelSqlite.h */,
-				0069B0457FD575FDA2A5F712121865B8 /* WHC_ModelSqlite.m */,
-				9D21157ED20542FBF96CE08ECF9952B6 /* standard */,
-				9016F753FE8472C2814DD462180DCB61 /* Support Files */,
-			);
-			name = WHC_ModelSqliteKit;
-			path = WHC_ModelSqliteKit;
-			sourceTree = "<group>";
-		};
-		428603F6206C13A028EEDA4E1B79245B /* SQLCipher */ = {
-			isa = PBXGroup;
-			children = (
-				57504582CB54EB946D773163C35B2C93 /* common */,
-				14BC3C25BDC7E226E24DB9563DDD4DBE /* Support Files */,
+				E587D7381305119E095F0A75A79F3220 /* common */,
+				5E01B4BBC8D86F6CEEF883A32FE2318C /* Support Files */,
 			);
 			name = SQLCipher;
 			path = SQLCipher;
@@ -273,13 +206,44 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		57504582CB54EB946D773163C35B2C93 /* common */ = {
+		5E01B4BBC8D86F6CEEF883A32FE2318C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				012A096ED5801ECDC0A7832DC4E67840 /* sqlite3.c */,
-				40FB08F30663FDBDDF909B9F13F45332 /* sqlite3.h */,
+				092C31F1AE65AF44C4446E71A1CA4D28 /* SQLCipher.xcconfig */,
+				84E723B68BBF6435153CD4A3AF6E8E8E /* SQLCipher-dummy.m */,
+				3A0C1385E538374E6D90D3DCCA7F531D /* SQLCipher-prefix.pch */,
 			);
-			name = common;
+			name = "Support Files";
+			path = "../Target Support Files/SQLCipher";
+			sourceTree = "<group>";
+		};
+		62FAEFF14CFE7EEA335474203C1D10F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4D94C4B704BB999A5570B985E566DA72 /* libFMDB.a */,
+				5FE4FA3263699FE34D0205D8B304F017 /* libPods-YWFMDBExamples.a */,
+				EB676EE0B8F7C4D3413521A9C5BB07D0 /* libSQLCipher.a */,
+				D75300CB944D9451DB50FD5A0CE2E9F2 /* libYWExcel.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6FE72C29140233EFFA54A7C8357D832D /* SQLCipher */ = {
+			isa = PBXGroup;
+			children = (
+				1DCC0E30CD4D1EF7B5F247D0763AEBF8 /* FMDatabase.h */,
+				65FCC369B91EB69E2F6B63C041A1DC56 /* FMDatabase.m */,
+				09C40235199FA53FFC8C35563CB4BB21 /* FMDatabaseAdditions.h */,
+				E645058D52D9ED9E3232EC92B7479015 /* FMDatabaseAdditions.m */,
+				62B9261C9B99027C27D662174A19A3E3 /* FMDatabasePool.h */,
+				F792DCD692793514DA071A215411199B /* FMDatabasePool.m */,
+				4F5E57D40B4BF7431CC85454C60B699B /* FMDatabaseQueue.h */,
+				7389455CF60B3428E0114A4B84C2769E /* FMDatabaseQueue.m */,
+				B71D6C588AA3A4A945844EE1D62AF0F3 /* FMDB.h */,
+				7B995785046B1F0C2D99ABA556BC8270 /* FMResultSet.h */,
+				3B71DB054F34CEDE8DE9CF6BE199FBD5 /* FMResultSet.m */,
+			);
+			name = SQLCipher;
 			sourceTree = "<group>";
 		};
 		7771541E697CF889754ED18FE7532F87 /* Pods-YWFMDBExamples */ = {
@@ -297,102 +261,71 @@
 			path = "Target Support Files/Pods-YWFMDBExamples";
 			sourceTree = "<group>";
 		};
-		7B7903AD4DD799EF958D4DA83A414659 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7B1494BBA37F450BC959D1BDE739ACB3 /* libFMDB.a */,
-				920B92E185E3F611BFDD98CA064C9D17 /* libPods-YWFMDBExamples.a */,
-				DFAC078255B2D5A8FBF93D1091E0EB4C /* libSQLCipher.a */,
-				4E212164D04C0244DA71C7890EB7932A /* libWHC_ModelSqliteKit.a */,
-				33D0FEEE5027CCE00B99172AFAA04A57 /* libYWExcel.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				90845B0451B298CEA3099B598B39C793 /* Pods */,
-				7B7903AD4DD799EF958D4DA83A414659 /* Products */,
+				D3B3E0A9AA0A8FD9DCBD76963F85B28C /* Pods */,
+				62FAEFF14CFE7EEA335474203C1D10F2 /* Products */,
 				4C9EDE400C8900526526CA644DA3375F /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		9016F753FE8472C2814DD462180DCB61 /* Support Files */ = {
+		8B8B719F8C5765D9484651040AF1F17E /* FMDB */ = {
 			isa = PBXGroup;
 			children = (
-				953F93461609BD5E5A0B68618E5309DE /* WHC_ModelSqliteKit.xcconfig */,
-				3AB63419380DF0EFB9CBA12390834C5E /* WHC_ModelSqliteKit-dummy.m */,
-				CEC0ED66597A4EBAD9425623139C4F33 /* WHC_ModelSqliteKit-prefix.pch */,
+				6FE72C29140233EFFA54A7C8357D832D /* SQLCipher */,
+				F445DA64A497DCAEF77D61E38854710B /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/WHC_ModelSqliteKit";
+			name = FMDB;
+			path = FMDB;
 			sourceTree = "<group>";
 		};
-		90845B0451B298CEA3099B598B39C793 /* Pods */ = {
+		D3B3E0A9AA0A8FD9DCBD76963F85B28C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				28AB91879FD8D24F6915C0FA4945FBD5 /* FMDB */,
-				428603F6206C13A028EEDA4E1B79245B /* SQLCipher */,
-				32E59E7C573AAB9246CF68DC8D3A36AB /* WHC_ModelSqliteKit */,
-				1933DC80E4034F0AC34ECBF0DBEF988F /* YWExcel */,
+				8B8B719F8C5765D9484651040AF1F17E /* FMDB */,
+				36806237851B8376D6631D3CA8F18A75 /* SQLCipher */,
+				176D0216B65384BF5EB6E56663118454 /* YWExcel */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9D21157ED20542FBF96CE08ECF9952B6 /* standard */ = {
+		E1548F2D963F42227E6FCB8437249734 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				84DDCBA66E04DFD27BFAF8B6C9F296FF /* YWExcel.xcconfig */,
+				65603C8434A6672C49664F3D5A257586 /* YWExcel-dummy.m */,
+				0F175EB36EEE1780C1FEB5FBE44F2E52 /* YWExcel-prefix.pch */,
 			);
-			name = standard;
+			name = "Support Files";
+			path = "../Target Support Files/YWExcel";
 			sourceTree = "<group>";
 		};
-		A7E493AAC9D93BB7FB5DFB0BB0804422 /* Support Files */ = {
+		E587D7381305119E095F0A75A79F3220 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				0B4310E27A594F61DA78CD6B2A6772CE /* FMDB.xcconfig */,
-				2059EC65F3A82D8F231156D62CF8DA44 /* FMDB-dummy.m */,
-				0A7C9DD45C0E9F667C2CA696B42C2AAC /* FMDB-prefix.pch */,
+				9F21781EFAB65DAA0AFDD9E65F7D1B5A /* sqlite3.c */,
+				78B7C864352DEB56030E198DE805341B /* sqlite3.h */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		F445DA64A497DCAEF77D61E38854710B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F96AD1E10114D07B297A9CC50378C668 /* FMDB.xcconfig */,
+				2E7DEC98AC9A666B20DC92C5A332AB8B /* FMDB-dummy.m */,
+				0B5A8F4D98A170770AE5383B29E3FC44 /* FMDB-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/FMDB";
 			sourceTree = "<group>";
 		};
-		B9683916307E3B5085C470A32878F982 /* SQLCipher */ = {
-			isa = PBXGroup;
-			children = (
-				A314E0D57E9F93B6E62ABF104E7BEF67 /* FMDatabase.h */,
-				5B1E8076C94AAC58FA4ED78E9C58320D /* FMDatabase.m */,
-				5D401C70070D1A07D6B824757415C6F2 /* FMDatabaseAdditions.h */,
-				4B1C14E9F711FCF8B771D86825AC2EA5 /* FMDatabaseAdditions.m */,
-				649A4FDD7CFD77B650CE39E44152F043 /* FMDatabasePool.h */,
-				2FFB07FFB79F26D84759B51613A3F229 /* FMDatabasePool.m */,
-				433941D78070A45DBC7E6B081AD23FBA /* FMDatabaseQueue.h */,
-				234C7F6BD187E56ADE9864A3B18AB3C3 /* FMDatabaseQueue.m */,
-				C08A9EB6B702A29C2E4E59B57A4F7140 /* FMDB.h */,
-				54679BB9A64C6AA9E4A7230FA08BC767 /* FMResultSet.h */,
-				3B20D68CF36EEB24014550E8CACC4248 /* FMResultSet.m */,
-			);
-			name = SQLCipher;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		148A93CC5A0BBB58E7620B6073716E3F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6FFA5B895C9FDEBE214326166A7F3A1A /* YWExcelCell.h in Headers */,
-				A876562F873DB7F233913D77EF064A07 /* YWExcelView.h in Headers */,
-				BE4D3AB1D1CF02600E4173DA1FF90A7A /* YWExcelViewMode.h in Headers */,
-				7759A3E0187AA4E741F055C44B5C795D /* YWIndexPath.h in Headers */,
-				484B47422C0B03C860D72FED43430A2F /* YWTableViewHeadView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		83AA755BF4963DE5B1904D0CA1CBBEEE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,37 +347,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C46E561BCDBE2CE4FA5D04DD3D8819CD /* Headers */ = {
+		E99A98F83444EDE575650E182C766195 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AC5D7A41BD13ED4193FB4A54E756822 /* WHC_ModelSqlite.h in Headers */,
+				3892251431E601F3295C4E527DB86216 /* YWExcelCell.h in Headers */,
+				0B67D7A0254BCEE7B53E7C89DBB7107F /* YWExcelView.h in Headers */,
+				752DE1A913BD7EAA6E7DEF8A940D4485 /* YWExcelViewMode.h in Headers */,
+				1CEA8192B26959E36F81171382DDEFED /* YWIndexPath.h in Headers */,
+				61256581D686690F2C4118444F4460F2 /* YWTableViewHeadView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		5DBC7B5D4CBCD3976FD82303A67BDF50 /* Pods-YWFMDBExamples */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83BE33878F8A87156F555FE1A194FE42 /* Build configuration list for PBXNativeTarget "Pods-YWFMDBExamples" */;
-			buildPhases = (
-				E27AE553EF7D39F7C5B899418093B380 /* Sources */,
-				D9B73FFB14001021F407BE399D72DE24 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7CF9F0C0B7455C12600B44799AFA29BD /* PBXTargetDependency */,
-				6814FC7C52636FDCB6D24CF45D317589 /* PBXTargetDependency */,
-				234AD6A319423709F4D23AE68B8B15E1 /* PBXTargetDependency */,
-				F3E1A228A460356933AB732DDA753B72 /* PBXTargetDependency */,
-			);
-			name = "Pods-YWFMDBExamples";
-			productName = "Pods-YWFMDBExamples";
-			productReference = 920B92E185E3F611BFDD98CA064C9D17 /* libPods-YWFMDBExamples.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		C7E40E341D246AAEB4DA0A3317D0C816 /* FMDB */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA2CD08D98A38C5036820407CEB9A23C /* Build configuration list for PBXNativeTarget "FMDB" */;
@@ -460,24 +377,43 @@
 			);
 			name = FMDB;
 			productName = FMDB;
-			productReference = 7B1494BBA37F450BC959D1BDE739ACB3 /* libFMDB.a */;
+			productReference = 4D94C4B704BB999A5570B985E566DA72 /* libFMDB.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EA670A8AAF58A8E92E107AF9F852452F /* WHC_ModelSqliteKit */ = {
+		E75947B739293681C7CE1B49A6B5BF6B /* YWExcel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E367D3CA30BD1C329DCD55AF2CFAD30 /* Build configuration list for PBXNativeTarget "WHC_ModelSqliteKit" */;
+			buildConfigurationList = FAAB828C031B8E9FC421C6735AB3CC05 /* Build configuration list for PBXNativeTarget "YWExcel" */;
 			buildPhases = (
-				B671AA21E44A966F4F9BEDA088D087B4 /* Sources */,
-				867F883714E47CB81DE3A0C5B9DE8617 /* Frameworks */,
-				C46E561BCDBE2CE4FA5D04DD3D8819CD /* Headers */,
+				308F0BBBF9DE035F91D96933BD48613C /* Sources */,
+				C4A8CAFB67267DF6B61B083FE8F4EDB3 /* Frameworks */,
+				E99A98F83444EDE575650E182C766195 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = WHC_ModelSqliteKit;
-			productName = WHC_ModelSqliteKit;
-			productReference = 4E212164D04C0244DA71C7890EB7932A /* libWHC_ModelSqliteKit.a */;
+			name = YWExcel;
+			productName = YWExcel;
+			productReference = D75300CB944D9451DB50FD5A0CE2E9F2 /* libYWExcel.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F2E24DF6031B0BC0A01DE3A60E3B3664 /* Pods-YWFMDBExamples */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28D21DBA0BD3F06E27B4308B3075AAB0 /* Build configuration list for PBXNativeTarget "Pods-YWFMDBExamples" */;
+			buildPhases = (
+				62E91FA7756668DC54CC2F65E2602DA3 /* Sources */,
+				8DBEDC247EFEB04266923257827C34DE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				29B9ED1FD166CEEAAAE6DF508419949B /* PBXTargetDependency */,
+				37E253C9A30D91D08F59AEE9C7194607 /* PBXTargetDependency */,
+				770336E80B27A9F5D99B18C035CE617D /* PBXTargetDependency */,
+			);
+			name = "Pods-YWFMDBExamples";
+			productName = "Pods-YWFMDBExamples";
+			productReference = 5FE4FA3263699FE34D0205D8B304F017 /* libPods-YWFMDBExamples.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		F71D9A7858A28D39544AD9A929AB4925 /* SQLCipher */ = {
@@ -494,24 +430,7 @@
 			);
 			name = SQLCipher;
 			productName = SQLCipher;
-			productReference = DFAC078255B2D5A8FBF93D1091E0EB4C /* libSQLCipher.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		F966B3E960E47AA3E73A44E9BDB1CFAA /* YWExcel */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 624FBDE3F419431555C61698A8A05A91 /* Build configuration list for PBXNativeTarget "YWExcel" */;
-			buildPhases = (
-				517B45596190146070061F0D0D0A6D93 /* Sources */,
-				88F18FFCD409742C323944D412E6DB08 /* Frameworks */,
-				148A93CC5A0BBB58E7620B6073716E3F /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = YWExcel;
-			productName = YWExcel;
-			productReference = 33D0FEEE5027CCE00B99172AFAA04A57 /* libYWExcel.a */;
+			productReference = EB676EE0B8F7C4D3413521A9C5BB07D0 /* libSQLCipher.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -531,39 +450,37 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 7B7903AD4DD799EF958D4DA83A414659 /* Products */;
+			productRefGroup = 62FAEFF14CFE7EEA335474203C1D10F2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				C7E40E341D246AAEB4DA0A3317D0C816 /* FMDB */,
-				5DBC7B5D4CBCD3976FD82303A67BDF50 /* Pods-YWFMDBExamples */,
+				F2E24DF6031B0BC0A01DE3A60E3B3664 /* Pods-YWFMDBExamples */,
 				F71D9A7858A28D39544AD9A929AB4925 /* SQLCipher */,
-				EA670A8AAF58A8E92E107AF9F852452F /* WHC_ModelSqliteKit */,
-				F966B3E960E47AA3E73A44E9BDB1CFAA /* YWExcel */,
+				E75947B739293681C7CE1B49A6B5BF6B /* YWExcel */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		517B45596190146070061F0D0D0A6D93 /* Sources */ = {
+		308F0BBBF9DE035F91D96933BD48613C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1984B9F0219DE984383CA07AD6E836D1 /* YWExcel-dummy.m in Sources */,
-				9AC0779493C89582A11CA5C40C38AAF9 /* YWExcelCell.m in Sources */,
-				B291EC0D30EDD6143E09F7E4B9BE9DB9 /* YWExcelView.m in Sources */,
-				84A22F95179F3D38B10C0CFD30233F95 /* YWExcelViewMode.m in Sources */,
-				E056C705856F09969C81610B99245FEF /* YWIndexPath.m in Sources */,
-				7B454C066EF93964529664F4900FECCF /* YWTableViewHeadView.m in Sources */,
+				FB84D73CDBB87ACB7AED23D9BC0B3EE4 /* YWExcel-dummy.m in Sources */,
+				C37856B3F6361FA8FADE35ABC92DACB9 /* YWExcelCell.m in Sources */,
+				D9850B6CF9DFBD4B66A18A900A63B4C1 /* YWExcelView.m in Sources */,
+				B0065FFDE3B7D6211A5AFB401B918D2E /* YWExcelViewMode.m in Sources */,
+				F91A1879CB8D19D5994CB06EB78DFF59 /* YWIndexPath.m in Sources */,
+				CA2E2523C5539C6A06311AF13F10B684 /* YWTableViewHeadView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B671AA21E44A966F4F9BEDA088D087B4 /* Sources */ = {
+		62E91FA7756668DC54CC2F65E2602DA3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C79CBFD6EEBAB3B7A43ECEDC756F434A /* WHC_ModelSqlite.m in Sources */,
-				B4827A5D756FF37E05495871238990EB /* WHC_ModelSqliteKit-dummy.m in Sources */,
+				83119589B6BA0073D848408F1C73CD68 /* Pods-YWFMDBExamples-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,34 +506,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E27AE553EF7D39F7C5B899418093B380 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7EFB5907D77292A2DF2FA9DA91EE2242 /* Pods-YWFMDBExamples-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		234AD6A319423709F4D23AE68B8B15E1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = WHC_ModelSqliteKit;
-			target = EA670A8AAF58A8E92E107AF9F852452F /* WHC_ModelSqliteKit */;
-			targetProxy = BC0963A08E48A552388AB03021E21E31 /* PBXContainerItemProxy */;
-		};
-		6814FC7C52636FDCB6D24CF45D317589 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SQLCipher;
-			target = F71D9A7858A28D39544AD9A929AB4925 /* SQLCipher */;
-			targetProxy = B250639BB7917D24FF97BB22FE6082E5 /* PBXContainerItemProxy */;
-		};
-		7CF9F0C0B7455C12600B44799AFA29BD /* PBXTargetDependency */ = {
+		29B9ED1FD166CEEAAAE6DF508419949B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FMDB;
 			target = C7E40E341D246AAEB4DA0A3317D0C816 /* FMDB */;
-			targetProxy = 9CC373857012C2D6868C7D560A06103D /* PBXContainerItemProxy */;
+			targetProxy = 3A1D7F9C7D5865B3DFEB8F08B1188A0B /* PBXContainerItemProxy */;
+		};
+		37E253C9A30D91D08F59AEE9C7194607 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SQLCipher;
+			target = F71D9A7858A28D39544AD9A929AB4925 /* SQLCipher */;
+			targetProxy = 9C667C5E7088B33E6A77825E91FDD7C9 /* PBXContainerItemProxy */;
+		};
+		770336E80B27A9F5D99B18C035CE617D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YWExcel;
+			target = E75947B739293681C7CE1B49A6B5BF6B /* YWExcel */;
+			targetProxy = 4E1A7B5E785A77C619C87518448645F5 /* PBXContainerItemProxy */;
 		};
 		F1C877C234083D6FF390D21CF6D1B6F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -624,18 +533,12 @@
 			target = F71D9A7858A28D39544AD9A929AB4925 /* SQLCipher */;
 			targetProxy = F52BE28B43814937366BE8D42EF673B7 /* PBXContainerItemProxy */;
 		};
-		F3E1A228A460356933AB732DDA753B72 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = YWExcel;
-			target = F966B3E960E47AA3E73A44E9BDB1CFAA /* YWExcel */;
-			targetProxy = A088C69E21E8C70DC1E77D772A7AE1D1 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0BE5BF5ED114D0C41C126C1D760482B6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B4310E27A594F61DA78CD6B2A6772CE /* FMDB.xcconfig */;
+			baseConfigurationReference = F96AD1E10114D07B297A9CC50378C668 /* FMDB.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -660,7 +563,7 @@
 		};
 		0D64DFFC3A22E7F130E3859C6DC9C48E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58A8991F5F5E7E817ABF693235291FD6 /* SQLCipher.xcconfig */;
+			baseConfigurationReference = 092C31F1AE65AF44C4446E71A1CA4D28 /* SQLCipher.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -744,9 +647,9 @@
 			};
 			name = Debug;
 		};
-		1CF117BF5397487E0AAD751F0F370BE9 /* Release */ = {
+		74872BC52931967EE7CB9715681FB8DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62E7489A24559E8ACB6FB468B279C837 /* YWExcel.xcconfig */;
+			baseConfigurationReference = 84DDCBA66E04DFD27BFAF8B6C9F296FF /* YWExcel.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -768,78 +671,9 @@
 			};
 			name = Release;
 		};
-		443759DC942F4994814F30F4712F6957 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 953F93461609BD5E5A0B68618E5309DE /* WHC_ModelSqliteKit.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/WHC_ModelSqliteKit/WHC_ModelSqliteKit-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = WHC_ModelSqliteKit;
-				PRODUCT_NAME = WHC_ModelSqliteKit;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		554AA55A246763D83DFA4C63C1DD8E01 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C37A66CB18D96CBCDF8E5D591DA1D805 /* Pods-YWFMDBExamples.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		9CA4A288D32495DA7ECAA2D1CE068813 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 953F93461609BD5E5A0B68618E5309DE /* WHC_ModelSqliteKit.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/WHC_ModelSqliteKit/WHC_ModelSqliteKit-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = WHC_ModelSqliteKit;
-				PRODUCT_NAME = WHC_ModelSqliteKit;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		B1C2AB07B0ECF9C227C59D851DC7F053 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58A8991F5F5E7E817ABF693235291FD6 /* SQLCipher.xcconfig */;
+			baseConfigurationReference = 092C31F1AE65AF44C4446E71A1CA4D28 /* SQLCipher.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -861,32 +695,30 @@
 			};
 			name = Release;
 		};
-		D1D1198B9AD06C58418651AE34365156 /* Debug */ = {
+		B277432F880E148E733D5C878BECBCF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62E7489A24559E8ACB6FB468B279C837 /* YWExcel.xcconfig */;
+			baseConfigurationReference = 03FD365DDA6CCB4CE128ECF27B495A6B /* Pods-YWFMDBExamples.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/YWExcel/YWExcel-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = YWExcel;
-				PRODUCT_NAME = YWExcel;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		E25D161F5E2CD8984EDE1469C3412809 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B4310E27A594F61DA78CD6B2A6772CE /* FMDB.xcconfig */;
+			baseConfigurationReference = F96AD1E10114D07B297A9CC50378C668 /* FMDB.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -908,9 +740,9 @@
 			};
 			name = Debug;
 		};
-		EB510D132EF924B05A1D3D9333899FED /* Debug */ = {
+		FD6AB9CD93B4495B409C4240BDAB3634 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03FD365DDA6CCB4CE128ECF27B495A6B /* Pods-YWFMDBExamples.debug.xcconfig */;
+			baseConfigurationReference = C37A66CB18D96CBCDF8E5D591DA1D805 /* Pods-YWFMDBExamples.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -926,8 +758,9 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 		FDB2FC4A1E5891381CD9D922145497F1 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -987,6 +820,29 @@
 			};
 			name = Release;
 		};
+		FE7665C800D579B9D22E76FB2F053F6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84DDCBA66E04DFD27BFAF8B6C9F296FF /* YWExcel.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/YWExcel/YWExcel-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = YWExcel;
+				PRODUCT_NAME = YWExcel;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -995,6 +851,15 @@
 			buildConfigurations = (
 				0D64DFFC3A22E7F130E3859C6DC9C48E /* Debug */,
 				B1C2AB07B0ECF9C227C59D851DC7F053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28D21DBA0BD3F06E27B4308B3075AAB0 /* Build configuration list for PBXNativeTarget "Pods-YWFMDBExamples" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B277432F880E148E733D5C878BECBCF3 /* Debug */,
+				FD6AB9CD93B4495B409C4240BDAB3634 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1008,38 +873,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		624FBDE3F419431555C61698A8A05A91 /* Build configuration list for PBXNativeTarget "YWExcel" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D1D1198B9AD06C58418651AE34365156 /* Debug */,
-				1CF117BF5397487E0AAD751F0F370BE9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6E367D3CA30BD1C329DCD55AF2CFAD30 /* Build configuration list for PBXNativeTarget "WHC_ModelSqliteKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				443759DC942F4994814F30F4712F6957 /* Debug */,
-				9CA4A288D32495DA7ECAA2D1CE068813 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83BE33878F8A87156F555FE1A194FE42 /* Build configuration list for PBXNativeTarget "Pods-YWFMDBExamples" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EB510D132EF924B05A1D3D9333899FED /* Debug */,
-				554AA55A246763D83DFA4C63C1DD8E01 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		FA2CD08D98A38C5036820407CEB9A23C /* Build configuration list for PBXNativeTarget "FMDB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E25D161F5E2CD8984EDE1469C3412809 /* Debug */,
 				0BE5BF5ED114D0C41C126C1D760482B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAAB828C031B8E9FC421C6735AB3CC05 /* Build configuration list for PBXNativeTarget "YWExcel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE7665C800D579B9D22E76FB2F053F6B /* Debug */,
+				74872BC52931967EE7CB9715681FB8DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
