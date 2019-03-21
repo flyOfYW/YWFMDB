@@ -7,10 +7,11 @@
 - **安全**: 支持数据库级别加密
 - **易用**: 真正实现一行代码操作数据库
 - **目标**: 替代手写sql语句方式
-- **支持**: (NSString,NSNumber,Int,double,float,Bool)类型
+- **支持**: (NSString,NSNumber,Int,double,float,Bool,NSArray,NSDictionary,以及NSObject的子类自定义model)类型
 - **灵活**: 依据模型类实现的YWSqlModelProtocol协议,支持忽略模型类属性存储数据表中
 - **智能**: 根据模型类实现的YWSqlModelProtocol协议返回的版本号即时更新数据库字段(动态删除/添加)
 - **强大**: 支持导出表（格式CSV和TXT）
+- **更多**: 支持模型嵌套继承模型类存储到数据库
 
 要求
 ==============
@@ -40,6 +41,7 @@
 注意
 ==============
 - 在需要对数据表自定义相关信息请先查看YWSqlModelProtocol协议
+- 当存储NSArray/NSDictionary属性并且里面是自定义模型对象或者属性直接是自定义模型对象时，模型对象必须实现NSCoding协议
 - 当模型类有新增/删除属性的时候需要在模型类实现sql_version并返回相应的版本号来表明有字段更新操作，YWFMDB会根据这个VERSION变更智能检查并自动更新数据库字段，无需手动更新数据库字段
 - 当模型类需要忽略属性存储字段时，请实现sql_ignoreTheField协议方法即可return要忽略属性名称集合
 - 如果自定义主键时，请实现sql_mainKey协议方法即可return主键字段（默认db_id）
