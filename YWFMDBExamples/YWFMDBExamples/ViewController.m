@@ -10,7 +10,6 @@
 #import "YWFMDB.h"
 #import <YWExcel/YWExcelView.h>
 #import "YWPerson.h"
-#import <WHC_ModelSqliteKit/WHC_ModelSqlite.h>
 
 @interface ViewController ()
 <YWExcelViewDelegate,YWExcelViewDataSource>
@@ -356,7 +355,6 @@
     
     NSArray *list = [YWFMDB queryWithModel:[YWPerson class]];
 
-//    NSArray *list1 = [WHC_ModelSqlite query:[YWPerson class]];
 
     if (!list || list.count == 0 ) {
         YWPerson *p = [YWPerson new];
@@ -405,7 +403,6 @@
 
         [YWFMDB storageModels:@[p,p1,p2] checkTableStructure:NO];
         
-//        [WHC_ModelSqlite inserts:@[p,p1,p2]];
     }
     
   
