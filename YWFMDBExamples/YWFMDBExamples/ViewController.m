@@ -403,10 +403,9 @@
 
         [YWFMDB storageModels:@[p,p1,p2] checkTableStructure:NO];
         
+var a: Double = p2.name.doubleValue * p2.menu.doubleValue
     }
     
-  
-
 }
 
 - (int)arcrandom{
@@ -415,4 +414,16 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [_tf endEditing:YES];
 }
+//                        let field1 = YWFieldFilter.init(field: "idc", operator: .eq, value: grModel.goodsId)
+//                        let field2 = YWFieldFilter.init(field: "type", operator: .eq, value: grModel.type)
+//                        let field3 = YWFieldFilter.init(field: "botomType", operator: .eq, value: grModel.botomType)
+//                       let relur = YWFMDB.query(withModel: YWYWGoodGirardStockModel.self, where: [field1,field2,field3])
+//                        if relur.count > 0{
+//                            YWFMDB.update(withModel: grModel, checkTableStructure: false, where: [field1,field2,field3])
+//                        }else{
+//                           let le = YWFMDB.storageModel(goodModel, checkTableStructure: false)
+//                            if le{
+//                                YWFMDB.storageModel(grModel, checkTableStructure: false)
+//                            }
+//                        }
 @end
