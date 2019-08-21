@@ -403,7 +403,6 @@
 
         [YWFMDB storageModels:@[p,p1,p2] checkTableStructure:NO];
         
-var a: Double = p2.name.doubleValue * p2.menu.doubleValue
     }
     
 }

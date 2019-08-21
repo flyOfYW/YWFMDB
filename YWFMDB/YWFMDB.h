@@ -87,6 +87,23 @@ typedef NS_ENUM(NSInteger, YWFMDBExportType) {
  @return 存储成功与否
  */
 + (BOOL)storageModel:(NSObject*)model checkTableStructure:(BOOL)isAuto;
+
+/**
+ see also：当超多50条记录时，优先删除count最小的数据，在存储当前的数据，参数值：ifExceed=>50，orderBy=>count, desc=>YES
+ */
+
+/// 批量存储（限制多少条数据，一旦超过，先删除在插入）
+/// @param models model的数组
+/// @param count 记录的阀值
+/// @param by 具体删除的条件（该字段必须是NSInteger的数据基本类型）
+/// @param desc 删除条件的排序
+/// @param isAuto 存储的时候，是否自动检查字段是否有更新
++ (BOOL)storageModels:(NSArray<NSObject *> *)models
+             ifExceed:(NSInteger)count
+              orderBy:(NSString *)by
+                 desc:(BOOL)desc
+  checkTableStructure:(BOOL)isAuto;
+
 //MARK: ------------------------------------- 更新 ------------------------------------
 /**
  更新本地存储的model数据

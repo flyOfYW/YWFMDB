@@ -66,7 +66,7 @@ static YWFMDB *singletonInstance = nil;
 }
 /**
  连接（创建、连接、重连DB）
-
+ 
  @param dbPath 数据库的路径(如:xxx/xxx/yw.db)
  */
 + (void)connectionDB:(NSString *)dbPath{
@@ -226,6 +226,48 @@ static YWFMDB *singletonInstance = nil;
     }
     return NO;
 }
+/// 批量存储（限制多少条数据，一旦超过，先删除在插入）
+/// @param models model的数组
+/// @param count 记录的阀值
+/// @param by 具体删除的条件（该字段必须是NSInteger的数据基本类型）
+/// @param desc 删除条件的排序
+/// @param isAuto 存储的时候，是否自动检查字段是否有更新
++ (BOOL)storageModels:(NSArray<NSObject *> *)models
+             ifExceed:(NSInteger)count
+              orderBy:(NSString *)by
+                 desc:(BOOL)desc
+  checkTableStructure:(BOOL)isAuto{
+    if (!singletonInstance.queue) {
+        [self log:@"请先连接数据库"];
+        return NO;
+    }
+    if (!models || models.count == 0) {
+        [self log:@"传入的数组不存在或者个数为0"];
+        return NO;
+    }
+    NSError *error = nil;
+    //先判断是否存在表，不存在则创建
+    BOOL isHave = [self createTable:models.firstObject error:&error];
+    if (isHave) {
+        //开始写入数据到数据库表中
+        return [self startStorageModel:models tableExists:NO checkTableStructure:isAuto];
+    }else{
+        //已经存在的表
+        if (error && error.code == -2) {
+            NSString *table = models.firstObject.sql_tableName;
+            NSString *mianKey = models.firstObject.sql_mainKey;
+            NSString *descStr = desc ? @"desc":@"asc";
+            NSString *byStr = by ? by : mianKey;
+            NSString *deletSql = [NSString stringWithFormat:@"delete from %@ where (select count(%@) from %@ ) > %zi and %@ in (select %@ from %@ order by %@ %@ limit (select count(%@) from %@) offset %zi",table,mianKey,table,count,mianKey,mianKey,table,byStr,descStr,mianKey,table,count];
+            BOOL isRelust =  [self executeSql:deletSql value:@[]];
+            if (!isRelust) {
+                return NO;
+            }
+            return [self startStorageModel:models tableExists:YES checkTableStructure:isAuto];
+        }
+    }
+    return YES;
+}
 /**
  开始写入数据
  
@@ -315,7 +357,7 @@ static YWFMDB *singletonInstance = nil;
     [values addObjectsFromArray:updateDict[valueKey]];
     
     [values addObjectsFromArray:whereDict[valueKey]];
-
+    
     NSString *sql = [NSString stringWithFormat:@"%@ where %@",updateDict[sqlKey],whereDict[sqlKey]];
     
     __block BOOL update = YES;
@@ -374,7 +416,7 @@ static YWFMDB *singletonInstance = nil;
         needAlert = [relustls[@"needAlert"] boolValue];
         sql_version = [relustls[@"version"] doubleValue];
     }
-
+    
     NSDictionary *updateDict = [self updateTableSqlSpecifiedValue:specifiedValue table:model.sql_tableName];
     
     NSDictionary *whereDict = [self whereFlieds:wheres];
@@ -534,7 +576,7 @@ static YWFMDB *singletonInstance = nil;
     NSString *sql = [self selectSql:nil table:model.sql_tableName];
     NSDictionary *dict = nil;
     if (!wheres || wheres.count == 0) {
-       dict = [self whereFlieds:@[]];
+        dict = [self whereFlieds:@[]];
     }else{
         dict = [self whereFlieds:wheres];
     }
@@ -668,7 +710,7 @@ static YWFMDB *singletonInstance = nil;
     NSString *sql = [NSString stringWithFormat:@"select %@ from %@",[self functionFlieds:function],model.sql_tableName];
     __block NSMutableArray *marr = [NSMutableArray new];
     [singletonInstance.queue inDatabase:^(FMDatabase * _Nonnull db) {
-       FMResultSet *resultSet = [db executeQuery:sql];
+        FMResultSet *resultSet = [db executeQuery:sql];
         int col = [resultSet columnCount];
         while ([resultSet next]) {
             for (int i = 0; i < col; i ++) {
@@ -742,7 +784,7 @@ static YWFMDB *singletonInstance = nil;
     if (!where || [where length] <= 0) {
         sql = [NSString stringWithFormat:@"delete from %@",table];
     }else{
-       sql = [NSString stringWithFormat:@"delete from %@ where %@",table,where];
+        sql = [NSString stringWithFormat:@"delete from %@ where %@",table,where];
     }
     __block BOOL re = NO;
     [singletonInstance.queue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
@@ -754,10 +796,23 @@ static YWFMDB *singletonInstance = nil;
     }];
     return re;
 }
+
++ (BOOL)executeSql:(NSString *)sql value:(NSArray *)args{
+    __block BOOL re = NO;
+    [singletonInstance.queue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        re = [db executeUpdate:sql withArgumentsInArray:args];
+        if (!re) {
+            *rollback = YES;
+            return ;
+        }
+    }];
+    return re;
+}
+
 //MARK: ------------------------------------- 导出（CSV/TXT） ------------------------------------
 /**
  导出数据表
-
+ 
  @param table 表名
  @param type csv/txt
  @return 导出的路径
@@ -778,7 +833,7 @@ static YWFMDB *singletonInstance = nil;
 + (NSString *)exportTxtTable:(NSString *)table{
     NSString *tagertPath = [NSString stringWithFormat:@"%@/Library/Caches/%@.txt",NSHomeDirectory(),table];
     __block NSMutableArray *txts = [[NSMutableArray alloc] initWithCapacity:1];
-
+    
     [singletonInstance.queue inDatabase:^(FMDatabase * _Nonnull db) {
         FMResultSet *result = [db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@",table]];
         int columnCount = [result columnCount];
@@ -794,7 +849,7 @@ static YWFMDB *singletonInstance = nil;
         [result close];
     }];
     NSError *error = nil;
-
+    
     NSData *data = [NSJSONSerialization dataWithJSONObject:txts.copy options:NSJSONWritingPrettyPrinted error:&error];
     [txts removeAllObjects];
     txts = nil;
@@ -804,7 +859,7 @@ static YWFMDB *singletonInstance = nil;
     }
     
     [data writeToFile:tagertPath options:NSDataWritingAtomic error:&error];
-
+    
     if (error) {
         [self log:[NSString stringWithFormat:@"导出失败:%@",error.userInfo]];
         return nil;
@@ -1028,7 +1083,7 @@ static YWFMDB *singletonInstance = nil;
 + (NSString *)createTable:(NSString *)tableName mainKey:(NSString *)mainKey{
     
     NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (%@ INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,",tableName,mainKey];
-
+    
     return sql.copy;
 }
 /**
@@ -1056,8 +1111,8 @@ static YWFMDB *singletonInstance = nil;
         [sqlQuestion appendString:@"?"];
         [valus addObject:dict[key]];
         if (i != count - 1) {
-          [sql appendString:@","];
-          [sqlQuestion appendString:@","];
+            [sql appendString:@","];
+            [sqlQuestion appendString:@","];
         }
         i++;
     }
@@ -1104,24 +1159,24 @@ static YWFMDB *singletonInstance = nil;
     NSArray *newWheres = [YWFieldFilter preProcessFieldFilters:wheres];
     
     NSArray <YWFieldFilter *>* nonLikes = newWheres.firstObject;
-
+    
     NSArray <YWFieldFilter *>* likes = newWheres.lastObject;
-
+    
     NSDictionary *nonLikeDict = @{};
     if (nonLikes.count > 0) {
         nonLikeDict = [self preFields:nonLikes connector:@" and "];
     }
     NSDictionary *likeDict = @{};
     if (likes.count > 0) {
-       likeDict = [self preFields:likes connector:@" or "];
+        likeDict = [self preFields:likes connector:@" or "];
     }
-
+    
     NSArray *likeValues = likeDict[valueKey];
-
+    
     NSArray *nonLikeValues = nonLikeDict[valueKey];
     NSMutableString *sql = [[NSMutableString alloc] initWithString:@""];
     NSMutableArray *values = [[NSMutableArray alloc] initWithCapacity:1];
-
+    
     if (likeValues.count > 0 && nonLikeValues.count > 0) {
         [sql appendFormat:@" %@ and ( %@ ) ", nonLikeDict[sqlKey], likeDict[sqlKey]];
         [values addObjectsFromArray:nonLikeValues];
@@ -1205,7 +1260,7 @@ static YWFMDB *singletonInstance = nil;
 //MARK: ----------------------------- private method -------------------------------------
 /**
  查询语句的执行
-
+ 
  @param sql 语句
  @param arg 值
  @param obj 对象
@@ -1335,7 +1390,7 @@ static YWFMDB *singletonInstance = nil;
             && [customSet.allObjects containsObject:ivarType]) {
             propertyType = [NSString stringWithFormat:@"%@",YW_Data];
         }else{
-           propertyType = [NSString stringWithFormat:@"%@",[self databaseFieldTypeWithType:ivarType]];
+            propertyType = [NSString stringWithFormat:@"%@",[self databaseFieldTypeWithType:ivarType]];
         }
         [proType appendString:ivarName];
         [proType appendString:@" "];
@@ -1374,14 +1429,14 @@ static YWFMDB *singletonInstance = nil;
         if (!vale) {
             vale = [self valueOnObj:vale ivarType:ivarType];
         }else{
-             if ([ivarType isEqualToString:@"NSArray"]){
-                 @try {
-                     vale = [NSKeyedArchiver archivedDataWithRootObject:vale];
-                 } @catch (NSException *exception) {
-                     [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",ivarName]];
-                 } @finally {
-                     
-                 }
+            if ([ivarType isEqualToString:@"NSArray"]){
+                @try {
+                    vale = [NSKeyedArchiver archivedDataWithRootObject:vale];
+                } @catch (NSException *exception) {
+                    [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",ivarName]];
+                } @finally {
+                    
+                }
             }else if ([ivarType isEqualToString:@"NSMutableArray"]){
                 @try {
                     vale = [NSKeyedArchiver archivedDataWithRootObject:vale];
@@ -1429,7 +1484,7 @@ static YWFMDB *singletonInstance = nil;
     
     NSMutableDictionary *SelDict = [NSMutableDictionary new];//@{@"name":@"setName:"}
     NSMutableDictionary *dict = [NSMutableDictionary new];//@{@"name":@"text"}
-
+    
     unsigned int count = 0;
     Ivar *ivarList = class_copyIvarList(obj.class, &count);
     for (int i = 0; i < count; i++) {
@@ -1477,7 +1532,7 @@ static YWFMDB *singletonInstance = nil;
     }else if ([type isEqualToString:@"NSArray"]){
         NSData *data = [resultSet dataForColumn:key];
         @try {
-           NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
             [obj setValue:arr forKey:key];
         } @catch (NSException *exception) {
             [self log:[NSString stringWithFormat:@"(%@) Array/Dictionary 元素没实现NSCoding协议解归档失败",key]];
@@ -1582,9 +1637,9 @@ static YWFMDB *singletonInstance = nil;
     }else if ([ivarType isEqualToString:@"NSMutableDictionary"]){
         value = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableDictionary new]];
     }
-//    else{
-//        vale = [NSNull null];
-//    }
+    //    else{
+    //        vale = [NSNull null];
+    //    }
     return value;
 }
 + (NSString *)dbPath{//默路径
