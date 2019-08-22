@@ -19,6 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)sql_mainKey;
 /**
+ 自定义主键对应的类型（TEXT\INTERGER）
+ 
+ @return 主键名（默认INTERGER）
+ */
+- (NSString *)sql_mainKeyClass;
+/**
  表名（默认是model的类名）
 
  @return 表名

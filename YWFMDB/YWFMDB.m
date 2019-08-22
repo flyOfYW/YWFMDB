@@ -258,7 +258,7 @@ static YWFMDB *singletonInstance = nil;
             NSString *mianKey = models.firstObject.sql_mainKey;
             NSString *descStr = desc ? @"desc":@"asc";
             NSString *byStr = by ? by : mianKey;
-            NSString *deletSql = [NSString stringWithFormat:@"delete from %@ where (select count(%@) from %@ ) > %zi and %@ in (select %@ from %@ order by %@ %@ limit (select count(%@) from %@) offset %zi",table,mianKey,table,count,mianKey,mianKey,table,byStr,descStr,mianKey,table,count];
+            NSString *deletSql = [NSString stringWithFormat:@"delete from %@ where (select count(%@) from %@ ) > %zi and %@ in (select %@ from %@ order by %@ %@ limit (select count(%@) from %@) offset %zi)",table,mianKey,table,count,mianKey,mianKey,table,byStr,descStr,mianKey,table,count];
             BOOL isRelust =  [self executeSql:deletSql value:@[]];
             if (!isRelust) {
                 return NO;
@@ -1069,14 +1069,23 @@ static YWFMDB *singletonInstance = nil;
     
     NSString *modelSql = [[self propertyAndTypeOnModel:model] objectForKey:@"createSql"];
     
-    NSString *sql = [NSString stringWithFormat:@"%@%@)",[self createTable:model.sql_tableName mainKey:model.sql_mainKey],modelSql];
+    NSString *sql = [NSString stringWithFormat:@"%@%@)",[self createTableSqlWith:model],modelSql];
     
     return sql;
+}
++ (NSString *)createTableSqlWith:(NSObject *)model{
+    NSString *mainKey = model.sql_mainKeyClass;
+    if ([mainKey isEqualToString:@"TEXT"]) {
+        NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (%@ TEXT NOT NULL PRIMARY KEY,",model.sql_tableName,mainKey];
+        return sql.copy;
+    } else {
+        return [self createTable:model.sql_tableName mainKey:mainKey];
+    }
 }
 /**
  依据model生成创建表的sql
  
- @param tableName model
+ @param tableName 表名
  @param mainKey 主键（的值必须是基本数据类型）
  @return 创建表sql（CREATE TABLE %@ (%@ INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT）
  */

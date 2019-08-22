@@ -12,6 +12,9 @@
 - (NSString *)sql_mainKey{
     return @"db_id";
 }
+- (NSString *)sql_mainKeyClass{
+    return @"INTERGER";
+}
 - (NSString *)sql_tableName{
     return NSStringFromClass(self.class);
 }
