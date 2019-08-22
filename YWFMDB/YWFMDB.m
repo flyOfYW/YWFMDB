@@ -1069,14 +1069,14 @@ static YWFMDB *singletonInstance = nil;
     
     NSString *modelSql = [[self propertyAndTypeOnModel:model] objectForKey:@"createSql"];
     
-    NSString *sql = [NSString stringWithFormat:@"%@%@)",[self createTableSqlWith:model],modelSql];
+    NSString *sql = [NSString stringWithFormat:@"%@%@)",[self createTableSqlWith:model modelSql:modelSql],modelSql];
     
     return sql;
 }
-+ (NSString *)createTableSqlWith:(NSObject *)model{
++ (NSString *)createTableSqlWith:(NSObject *)model modelSql:(NSString *)modelSql{
     NSString *mainKeyClass = model.sql_mainKeyClass;
     if ([mainKeyClass isEqualToString:@"TEXT"]) {
-        NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (%@ TEXT NOT NULL PRIMARY KEY,",model.sql_tableName,model.sql_mainKey];
+        NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (%@ TEXT NOT NULL PRIMARY KEY%@",model.sql_tableName,model.sql_mainKey,modelSql.length == 0 ? @"": modelSql];
         return sql.copy;
     } else {
         return [self createTable:model.sql_tableName mainKey:model.sql_mainKey];
@@ -1385,6 +1385,9 @@ static YWFMDB *singletonInstance = nil;
             ivarName = [ivarName substringFromIndex:1];
         }
         if ([obj.sql_ignoreTheField.allObjects containsObject:ivarName]) {
+            continue;
+        }
+        if ([obj.sql_mainKey isEqualToString:ivarName]) {
             continue;
         }
         /// 成员变量类型

@@ -10,6 +10,7 @@
 #import "YWFMDB.h"
 #import <YWExcel/YWExcelView.h>
 #import "YWPerson.h"
+#import "YWCommomModel.h"
 
 @interface ViewController ()
 <YWExcelViewDelegate,YWExcelViewDataSource>
@@ -53,6 +54,7 @@
     [self initData];
 
     [self reloadList];
+    
 }
 
 - (IBAction)insertAction:(id)sender {

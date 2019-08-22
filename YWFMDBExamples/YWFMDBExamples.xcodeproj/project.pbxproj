@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B62EF94230E5493007C5315 /* YWCommomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B62EF93230E5493007C5315 /* YWCommomModel.m */; };
 		BE584E61CA0FB320D58FA3E0 /* libPods-YWFMDBExamples.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A89EE3FED985B285C94B3CA /* libPods-YWFMDBExamples.a */; };
 		DA0482112241E0ED00FA45DE /* YWFMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0482012241E0ED00FA45DE /* YWFMDatabase.m */; };
 		DA0482122241E0ED00FA45DE /* YWFieldFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0482022241E0ED00FA45DE /* YWFieldFilter.m */; };
@@ -27,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		3A89EE3FED985B285C94B3CA /* libPods-YWFMDBExamples.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YWFMDBExamples.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B62EF92230E5493007C5315 /* YWCommomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWCommomModel.h; sourceTree = "<group>"; };
+		7B62EF93230E5493007C5315 /* YWCommomModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWCommomModel.m; sourceTree = "<group>"; };
 		DA0482002241E0ED00FA45DE /* YWFMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWFMDatabaseQueue.h; sourceTree = "<group>"; };
 		DA0482012241E0ED00FA45DE /* YWFMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWFMDatabase.m; sourceTree = "<group>"; };
 		DA0482022241E0ED00FA45DE /* YWFieldFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWFieldFilter.m; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				DAA6D01B2240E5D800FA2584 /* ViewController.m */,
 				DA0482192241EB6800FA45DE /* YWPerson.h */,
 				DA04821A2241EB6800FA45DE /* YWPerson.m */,
+				7B62EF92230E5493007C5315 /* YWCommomModel.h */,
+				7B62EF93230E5493007C5315 /* YWCommomModel.m */,
 				DAA6D01D2240E5D800FA2584 /* Main.storyboard */,
 				DAA6D0202240E5DC00FA2584 /* Assets.xcassets */,
 				DAA6D0222240E5DC00FA2584 /* LaunchScreen.storyboard */,
@@ -245,6 +250,7 @@
 			files = (
 				DA04821B2241EB6800FA45DE /* YWPerson.m in Sources */,
 				DAA6D01C2240E5D800FA2584 /* ViewController.m in Sources */,
+				7B62EF94230E5493007C5315 /* YWCommomModel.m in Sources */,
 				DA0482112241E0ED00FA45DE /* YWFMDatabase.m in Sources */,
 				DA0482162241E0ED00FA45DE /* NSObject+YWSqlModel.m in Sources */,
 				DA0482132241E0ED00FA45DE /* YWPageable.m in Sources */,
