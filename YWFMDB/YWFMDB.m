@@ -1074,12 +1074,12 @@ static YWFMDB *singletonInstance = nil;
     return sql;
 }
 + (NSString *)createTableSqlWith:(NSObject *)model{
-    NSString *mainKey = model.sql_mainKeyClass;
-    if ([mainKey isEqualToString:@"TEXT"]) {
-        NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (%@ TEXT NOT NULL PRIMARY KEY,",model.sql_tableName,mainKey];
+    NSString *mainKeyClass = model.sql_mainKeyClass;
+    if ([mainKeyClass isEqualToString:@"TEXT"]) {
+        NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (%@ TEXT NOT NULL PRIMARY KEY,",model.sql_tableName,model.sql_mainKey];
         return sql.copy;
     } else {
-        return [self createTable:model.sql_tableName mainKey:mainKey];
+        return [self createTable:model.sql_tableName mainKey:model.sql_mainKey];
     }
 }
 /**
