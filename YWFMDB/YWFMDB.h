@@ -12,7 +12,6 @@
 #import "YWPageable.h"
 #import "YWFunction.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, YWFMDBExportType) {
     CSV   = 0,
@@ -270,4 +269,3 @@ typedef NS_ENUM(NSInteger, YWFMDBExportType) {
 
 @end
 
-NS_ASSUME_NONNULL_END
