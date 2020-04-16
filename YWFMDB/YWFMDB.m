@@ -237,9 +237,15 @@ static YWFMDB *singletonInstance = nil;
         [self log:@"请先连接数据库"];
         return NO;
     }
+    __block BOOL isSuccess = NO;
     //先判断是否存在表，不存在则创建
-     [self createTableDict:list.firstObject table:tableName];
-
+    NSString *createSql = [self createTableDict:list.firstObject table:tableName];
+    [singletonInstance.queue inDatabase:^(FMDatabase * _Nonnull db) {
+        isSuccess = [db executeUpdate:createSql];
+    }];
+    if (!isSuccess) {
+        return isSuccess;
+    }
     //批量插入操作，最好使用事务
      [singletonInstance.queue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
          for (NSDictionary *obj in list) {
@@ -1839,6 +1845,6 @@ static YWFMDB *singletonInstance = nil;
     NSLog(@"%@", [NSString stringWithFormat:@"\n/**********YWDBTool*************/\n YWDBTool【%@】\n /**********YWDBTool*************/",error]);
 }
 + (NSString *)version{
-    return @"0.4.4";
+    return @"0.4.5";
 }
 @end
