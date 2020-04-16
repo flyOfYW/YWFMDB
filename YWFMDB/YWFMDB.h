@@ -103,7 +103,13 @@ typedef NS_ENUM(NSInteger, YWFMDBExportType) {
               orderBy:(NSString *)by
                  desc:(BOOL)desc
   checkTableStructure:(BOOL)isAuto;
-
+/**
+ 批量存储dict（1、判断表是否存在；2、开始存入数据）
+ 
+ @param list list的数组
+ @return 存储成功与否
+ */
++ (BOOL)storageModels:(NSArray<NSDictionary*>*)list table:(NSString *)tableName;
 //MARK: ------------------------------------- 更新 ------------------------------------
 /**
  更新本地存储的model数据
@@ -193,6 +199,17 @@ typedef NS_ENUM(NSInteger, YWFMDBExportType) {
  @return 模型对象集合
  */
 + (NSArray *)queryWithModel:(Class)cls where:(NSArray<YWFieldFilter *> *)wheres order:(NSArray<YWFieldOrder *> *)orders limit:(YWPageable *)page;
+/**
+ 分页查询指定条件的本地存储的数据,结果并按指定的条件进行排序【返回结果无需转成对象】
+ 
+ @param tableName 表名
+ @param fields 查询的字段集合
+ @param wheres 筛选条件
+ @param orders 排序条件
+ @param page 分页
+ @return 模型对象集合
+ */
++ (NSArray *)queryWithTableName:(NSString *)tableName fields:(NSDictionary *)fields where:(NSArray<YWFieldFilter *> *)wheres order:(NSArray<YWFieldOrder *> *)orders limit:(YWPageable *)page;
 /**
  函数查询
 
