@@ -887,21 +887,24 @@ static YWFMDB *singletonInstance = nil;
         [self log:@"请先连接数据库"];
         return NO;
     }
-    NSString *sql = @"";
-    if (!where || [where length] <= 0) {
-        sql = [NSString stringWithFormat:@"delete from %@",table];
-    }else{
-        sql = [NSString stringWithFormat:@"delete from %@ where %@",table,where];
-    }
-    __block BOOL re = NO;
-    [singletonInstance.queue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        re = [db executeUpdate:sql withArgumentsInArray:args];
-        if (!re) {
-            *rollback = YES;
-            return ;
+    if ([self tableExists:table]) {
+        NSString *sql = @"";
+        if (!where || [where length] <= 0) {
+            sql = [NSString stringWithFormat:@"delete from %@",table];
+        }else{
+            sql = [NSString stringWithFormat:@"delete from %@ where %@",table,where];
         }
-    }];
-    return re;
+        __block BOOL re = NO;
+        [singletonInstance.queue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+            re = [db executeUpdate:sql withArgumentsInArray:args];
+            if (!re) {
+                *rollback = YES;
+                return ;
+            }
+        }];
+        return re;
+    }
+   return YES;
 }
 
 + (BOOL)executeSql:(NSString *)sql value:(NSArray *)args{
@@ -1277,7 +1280,26 @@ static YWFMDB *singletonInstance = nil;
     for (NSString *key in dict.allKeys) {
         [sql appendString:key];
         [sqlQuestion appendString:@"?"];
-        [valus addObject:dict[key]];
+//        [valus addObject:dict[key]];
+         if ([dict[key] isKindOfClass:[NSString class]]) {
+            [valus addObject:dict[key]];
+        }else if ([dict[key] isKindOfClass:[NSNumber class]]) {
+            [valus addObject:dict[key]];
+        }else if ([dict[key] isKindOfClass:[NSDate class]]) {
+            [valus addObject:dict[key]];
+        }else if ([dict[key] isKindOfClass:[NSData class]]) {
+            [valus addObject:dict[key]];
+        }else if ([dict[key] isKindOfClass:[NSArray class]]) {
+            [valus addObject:[NSKeyedArchiver archivedDataWithRootObject:dict[key]]];
+        }else if ([dict[key] isKindOfClass:[NSMutableArray class]]) {
+            [valus addObject:[NSKeyedArchiver archivedDataWithRootObject:dict[key]]];
+        }else if ([dict[key] isKindOfClass:[NSDictionary class]]) {
+            [valus addObject:[NSKeyedArchiver archivedDataWithRootObject:dict[key]]];
+        }else if ([dict[key] isKindOfClass:[NSMutableDictionary class]]) {
+            [valus addObject:[NSKeyedArchiver archivedDataWithRootObject:dict[key]]];
+        }else{
+            [valus addObject:dict[key] ? dict[key] : @""];
+        }
         if (i != count - 1) {
             [sql appendString:@","];
             [sqlQuestion appendString:@","];
@@ -1853,6 +1875,6 @@ static YWFMDB *singletonInstance = nil;
     NSLog(@"%@", [NSString stringWithFormat:@"\n/**********YWDBTool*************/\n YWDBTool【%@】\n /**********YWDBTool*************/",error]);
 }
 + (NSString *)version{
-    return @"0.4.8";
+    return @"0.4.9";
 }
 @end
