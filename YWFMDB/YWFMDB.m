@@ -252,7 +252,8 @@ static YWFMDB *singletonInstance = nil;
      [singletonInstance.queue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
          for (NSDictionary *obj in list) {
              NSDictionary *dict = [self insertTableSqlDict:obj table:tableName];
-             if ([db executeUpdate:dict[sqlKey] withArgumentsInArray:dict[valueKey]]) {
+             isSuccess = [db executeUpdate:dict[sqlKey] withArgumentsInArray:dict[valueKey]];
+             if (isSuccess) {
                  dict = nil;
              }else{
                  [self log:@"插入数据失败"];
@@ -262,7 +263,7 @@ static YWFMDB *singletonInstance = nil;
              }
          }
      }];
-     return NO;
+     return isSuccess;
     
 }
 /// 批量存储（限制多少条数据，一旦超过，先删除在插入）
@@ -328,11 +329,13 @@ static YWFMDB *singletonInstance = nil;
         needAlert = [relustls[@"needAlert"] boolValue];
         sql_version = [relustls[@"version"] doubleValue];
     }
+    __block BOOL update = YES;
     //批量插入操作，最好使用事务
     [singletonInstance.queue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         for (NSObject *obj in models) {
             NSDictionary *dict = [self insertTableSqlModel:obj];
-            if ([db executeUpdate:dict[sqlKey] withArgumentsInArray:dict[valueKey]]) {
+            update = [db executeUpdate:dict[sqlKey] withArgumentsInArray:dict[valueKey]];
+            if (update) {
                 dict = nil;
             }else{
                 [self log:@"插入数据失败"];
@@ -342,6 +345,9 @@ static YWFMDB *singletonInstance = nil;
             }
         }
     }];
+    if (!update) {
+        return NO;
+    }
     
     if (!exists) {//表不存在
         [self insertOrUpdate:YES table:firstModel.sql_tableName version:firstModel.sql_version];
@@ -1847,6 +1853,6 @@ static YWFMDB *singletonInstance = nil;
     NSLog(@"%@", [NSString stringWithFormat:@"\n/**********YWDBTool*************/\n YWDBTool【%@】\n /**********YWDBTool*************/",error]);
 }
 + (NSString *)version{
-    return @"0.4.7";
+    return @"0.4.8";
 }
 @end
