@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name = 'YWFMDB'
-s.version = '0.4.6'
+s.version = '0.4.7'
 s.summary = '基于FMDB上的二次封装，直接对model进行操作'
 s.homepage = 'https://github.com/flyOfYW/YWFMDB'
 s.license = 'MIT'
@@ -22,10 +22,10 @@ end
 
 # use SQLCipher and enable -DSQLITE_HAS_CODEC flag
  s.subspec 'SQLCipher' do |ss|
- ss.dependency 'FMDB'
- ss.dependency 'SQLCipher'
+ ss.dependency 'FMDB/SQLCipher'
+ # ss.dependency 'SQLCipher'
  ss.source_files  = 'YWFMDB/*'
- ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_HAS_CODEC -DHAVE_USLEEP=1', 'HEADER_SEARCH_PATHS' => 'SQLCipher' }
+ # ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_HAS_CODEC -DHAVE_USLEEP=1', 'HEADER_SEARCH_PATHS' => 'SQLCipher' }
  end
 
 

@@ -49,8 +49,8 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/Library/Caches/YWSqlite.db",NSHomeDirectory()];
     //创建数据库,并连接
-    [YWFMDB connectionDB:path];
- 
+//    [YWFMDB connectionDB:path];
+    [YWFMDB connectionEncryptionDB:path enKey:@"hg_itsg_1024"];
     [self initData];
 
     [self reloadList];
