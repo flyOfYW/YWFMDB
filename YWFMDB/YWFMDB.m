@@ -73,7 +73,7 @@ static YWFMDB *singletonInstance = nil;
     if (!dbPath) {
         dbPath = [self dbPath];
     }
-    NSLog(@"不加密db:%@",dbPath);
+//    NSLog(@"不加密db:%@",dbPath);
     if ([YWFMDB standardYWFMDBDefaults].queue) {//存在
         if ([dbPath isEqualToString:singletonInstance.dbPath]) {
             return;
@@ -96,7 +96,7 @@ static YWFMDB *singletonInstance = nil;
     if (!dbPath) {
         dbPath = [self dbPath];
     }
-    NSLog(@"加密db:%@",dbPath);
+//    NSLog(@"加密db:%@",dbPath);
     if ([YWFMDB standardYWFMDBDefaults].queue) {//存在
         if ([dbPath isEqualToString:singletonInstance.dbPath]) {
             [YWFMDatabase setEncryptKey:key];
@@ -233,19 +233,51 @@ static YWFMDB *singletonInstance = nil;
  @return 存储成功与否
  */
 + (BOOL)storageModels:(NSArray<NSDictionary*>*)list table:(NSString *)tableName{
+    return [self storageModels:list table:tableName version:1.0];
+}
+/// 批量存储dict
+/// @param list list的数组
+/// @param tableName 表名
+/// @param version 该表的版本【当该表内部数据结构发现变化，可以增值传入，内部处理】
++ (BOOL)storageModels:(NSArray<NSDictionary*>*)list
+                table:(NSString *)tableName
+              version:(NSInteger)version{
+    return [self storageModels:list table:tableName mainKey:nil version:version];
+}
+/// 批量存储dict[如果数据有相同，则替换]
+/// @param list list的数组
+/// @param tableName 表名
+/// @param mainKey 主键
+/// @param version 该表的版本【当该表内部数据结构发现变化，可以增值传入，内部处理】
++ (BOOL)storageModels:(NSArray<NSDictionary*>*)list
+                table:(NSString *)tableName
+              mainKey:(NSString *)mainKey
+              version:(NSInteger)version{
     if (!singletonInstance.queue) {
         [self log:@"请先连接数据库"];
         return NO;
     }
     __block BOOL isSuccess = NO;
+    NSDictionary *creDict = [self createTableDict:list.firstObject table:tableName mainKey:mainKey];
     //先判断是否存在表，不存在则创建
     if (![self tableExists:tableName]) {//判断表是否已经存在
-        NSString *createSql = [self createTableDict:list.firstObject table:tableName];
+        NSString *createSql = [creDict objectForKey:@"createSql"];
         [singletonInstance.queue inDatabase:^(FMDatabase * _Nonnull db) {
             isSuccess = [db executeUpdate:createSql];
         }];
         if (!isSuccess) {
             return isSuccess;
+        }
+        //建表成功，则关联表版本
+        [self insertOrUpdate:YES table:tableName version:@1];
+    }else{
+        double sql_version = [self upgradeTableWithTableName:tableName];
+        if (version > sql_version) {//更新字段
+            NSDictionary *propertys = [creDict objectForKey:@"py"];//新model的字段
+            [self upgradeTableMainKey:nil tableName:tableName propertys:propertys];
+            //建表成功，则关联表版本
+            [self insertOrUpdate:YES table:tableName version:@(version)];
+
         }
     }
     //批量插入操作，最好使用事务
@@ -263,9 +295,10 @@ static YWFMDB *singletonInstance = nil;
              }
          }
      }];
-     return isSuccess;
-    
+    return isSuccess;
 }
+
+
 /// 批量存储（限制多少条数据，一旦超过，先删除在插入）
 /// @param models model的数组
 /// @param count 记录的阀值
@@ -295,7 +328,7 @@ static YWFMDB *singletonInstance = nil;
         //已经存在的表
         if (error && error.code == -2) {
             NSString *table = models.firstObject.sql_tableName;
-            NSString *mianKey = models.firstObject.sql_mainKey;
+            NSString *mianKey = models.firstObject.sql_mainKey ? models.firstObject.sql_mainKey : @"";
             NSString *descStr = desc ? @"desc":@"asc";
             NSString *byStr = by ? by : mianKey;
             NSString *deletSql = [NSString stringWithFormat:@"delete from %@ where (select count(%@) from %@ ) > %zi and %@ in (select %@ from %@ order by %@ %@ limit (select count(%@) from %@) offset %zi)",table,mianKey,table,count,mianKey,mianKey,table,byStr,descStr,mianKey,table,count];
@@ -1020,6 +1053,18 @@ static YWFMDB *singletonInstance = nil;
  */
 + (BOOL)upgradeTable:(NSObject *)model{
     
+    //先进行增减字段后，在进行更新数据表的数据
+    NSDictionary *dict = [self propertyAndTypeOnModel:model];
+    NSDictionary *propertys = [dict objectForKey:@"py"];//新model的字段
+    
+    return [self upgradeTableMainKey:model.sql_mainKey
+                           tableName:model.sql_tableName
+                           propertys:propertys];
+}
++ (BOOL)upgradeTableMainKey:(NSString *)sql_mainKey
+                  tableName:(NSString *)sql_tableName
+                  propertys:(NSDictionary *)propertys{
+    
     __block BOOL upgradeSuecces = YES;
     
     NSMutableString *addString = [NSMutableString new];
@@ -1027,7 +1072,7 @@ static YWFMDB *singletonInstance = nil;
     NSMutableSet *set = [NSMutableSet set];
     NSMutableArray *oldList = [NSMutableArray new];//查询当前表的列元素
     [singletonInstance.queue inDatabase:^(FMDatabase * _Nonnull db) {
-        FMResultSet *resultSet = [db getTableSchema:model.sql_tableName];
+        FMResultSet *resultSet = [db getTableSchema:sql_tableName];
         while ([resultSet next]) {
             [oldList addObject:[resultSet stringForColumn:@"name"]];
         }
@@ -1035,8 +1080,6 @@ static YWFMDB *singletonInstance = nil;
     }];
     
     //先进行增减字段后，在进行更新数据表的数据
-    NSDictionary *dict = [self propertyAndTypeOnModel:model];
-    NSDictionary *propertys = [dict objectForKey:@"py"];//新model的字段
     int i = 0;
     for (NSString *column in oldList) {
         if (![propertys.allKeys containsObject:column]) {//在当前新model的字段列，找不到当前数据表的列字段，则是删除字段
@@ -1064,12 +1107,12 @@ static YWFMDB *singletonInstance = nil;
         i++;
     }
     if (addString && addString.length > 0) {
-        upgradeSuecces = [self addColumn:addString table:model.sql_tableName];//新增字段执行完毕
+        upgradeSuecces = [self addColumn:addString table:sql_tableName];//新增字段执行完毕
     }
     
     if (upgradeSuecces) {
         if (deleteString && deleteString.length > 0) {
-            NSString *defalut = [NSString stringWithFormat:@"%@,",model.sql_mainKey];
+            NSString *defalut = sql_mainKey ? [NSString stringWithFormat:@"%@,",sql_mainKey] : @"";
             if (![deleteString isEqualToString:defalut]) {
                 [set addObjectsFromArray:propertys.allKeys];
                 [set addObjectsFromArray:oldList];
@@ -1089,7 +1132,7 @@ static YWFMDB *singletonInstance = nil;
                     q++;
                 }
                 //删除字段
-                upgradeSuecces = [self dropColumn:comStr table:model.sql_tableName mainKey:model.sql_mainKey];
+                upgradeSuecces = [self dropColumn:comStr table:sql_tableName mainKey:sql_mainKey];
                 commomList = nil;
             }
             defalut = nil;
@@ -1097,7 +1140,6 @@ static YWFMDB *singletonInstance = nil;
         
     }
     return upgradeSuecces;
-    
 }
 /**
  删除表的一列操作
@@ -1110,12 +1152,22 @@ static YWFMDB *singletonInstance = nil;
     
     //进行删除字段操作，参考 https://www.sqlite.org/faq.html#q11
     NSString *newTable = [NSString stringWithFormat:@"%@_temp",table];
-    NSString *newComStr = [NSString stringWithFormat:@"%@,%@",mainKey,comStr];
+    NSString *newComStr = mainKey ? [NSString stringWithFormat:@"%@,%@",mainKey,comStr] : [NSString stringWithFormat:@"%@",comStr];
     NSMutableArray *dropList = [NSMutableArray new];
-    [dropList addObject:[NSString stringWithFormat:@"CREATE TEMPORARY TABLE %@(%@ INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,%@)",newTable,mainKey,comStr]];
+    
+    if (mainKey) {
+        [dropList addObject:[NSString stringWithFormat:@"CREATE TEMPORARY TABLE %@(%@ INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,%@)",newTable,mainKey,comStr]];
+    }else{
+        [dropList addObject:[NSString stringWithFormat:@"CREATE TEMPORARY TABLE %@(%@)",newTable,comStr]];
+    }
+    
     [dropList addObject:[NSString stringWithFormat:@"INSERT INTO %@ SELECT %@ FROM %@;",newTable,newComStr,table]];
     [dropList addObject:[NSString stringWithFormat:@"DROP TABLE %@;",table]];
-    [dropList addObject:[NSString stringWithFormat:@"CREATE  TABLE %@(%@ INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,%@)",table,mainKey,comStr]];
+    if (mainKey) {
+        [dropList addObject:[NSString stringWithFormat:@"CREATE TABLE %@(%@ INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,%@)",table,mainKey,comStr]];
+    }else{
+        [dropList addObject:[NSString stringWithFormat:@"CREATE TABLE %@(%@)",table,comStr]];
+    }
     [dropList addObject:[NSString stringWithFormat:@"INSERT INTO %@ SELECT %@ FROM %@;",table,newComStr,newTable]];
     [dropList addObject:[NSString stringWithFormat:@"DROP TABLE %@;",newTable]];
     
@@ -1183,42 +1235,82 @@ static YWFMDB *singletonInstance = nil;
     
     return sql;
 }
-+ (NSString *)createTableDict:(NSDictionary *)dict table:(NSString *)tableName{
++ (NSDictionary *)createTableDict:(NSDictionary *)dict
+                            table:(NSString *)tableName
+                          mainKey:(NSString *)mainKey{
     
      NSMutableArray *sqls = [NSMutableArray new];
+     NSMutableDictionary *py = [NSMutableDictionary new];
+     NSString *mainKeyClass = @"";
     for (NSString *key in dict.allKeys) {
         id value = dict[key];
-        if ([value isKindOfClass:NSString.class]) {
-            [sqls addObject:[NSString stringWithFormat:@"%@ TEXT",key]];
-        }else if ([value isKindOfClass:NSNumber.class]){
-            [sqls addObject:[NSString stringWithFormat:@"%@ DOUBLE",key]];
-        }else if ([value isKindOfClass:NSData.class]){
-            [sqls addObject:[NSString stringWithFormat:@"%@ BLOB",key]];
-        }else if ([value isKindOfClass:NSArray.class]){
-            [sqls addObject:[NSString stringWithFormat:@"%@ BLOB",key]];
-        }else if ([value isKindOfClass:NSMutableArray.class]){
-            [sqls addObject:[NSString stringWithFormat:@"%@ BLOB",key]];
-        }else if ([value isKindOfClass:NSDictionary.class]){
-            [sqls addObject:[NSString stringWithFormat:@"%@ BLOB",key]];
-        }else if ([value isKindOfClass:NSMutableDictionary.class]){
-            [sqls addObject:[NSString stringWithFormat:@"%@ BLOB",key]];
+        NSString *clasValue = [self getObjClasValue:value];
+        [py setValue:clasValue forKey:key];
+
+//        [sqls addObject:[NSString stringWithFormat:@"%@ TEXT",key]];
+//        [py setValue:@"TEXT" forKey:key];
+        
+        if (mainKey && mainKey.length > 0) {
+            if ([mainKey isEqual:key]) {
+                mainKeyClass = clasValue;
+            }else{
+                [sqls addObject:[NSString stringWithFormat:@"%@ %@",key,clasValue]];
+            }
+        }else{
+            [sqls addObject:[NSString stringWithFormat:@"%@ %@",key,clasValue]];
         }
     }
-    NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (main_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,",tableName];
+    NSMutableString *sql;
+    if (mainKey && mainKey.length > 0) {
+        sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (%@ %@ NOT NULL PRIMARY KEY ,",tableName,mainKey,mainKeyClass];
+    }else{
+        sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (",tableName];
+    }
     [sql appendString:[sqls componentsJoinedByString:@","]];
     [sql appendString:@")"];
-    
-    return sql.copy;
+        return
+        @{
+            @"createSql":sql.copy,
+            @"py":py.copy
+        };
+}
++ (NSString *)getObjClasValue:(id)value{
+    if ([value isKindOfClass:NSString.class]) {
+        return @"TEXT";
+    }
+    if ([value isKindOfClass:NSNumber.class]){
+        return @"DOUBLE";
+    }
+    if ([value isKindOfClass:NSData.class]){
+        return @"BLOB";
+    }
+    if ([value isKindOfClass:NSArray.class]){
+        return @"BLOB";
+    }
+    if ([value isKindOfClass:NSMutableArray.class]){
+        return @"BLOB";
+    }
+    if ([value isKindOfClass:NSDictionary.class]){
+        return @"BLOB";
+    }
+    if ([value isKindOfClass:NSMutableDictionary.class]){
+        return @"BLOB";
+    }
+    return @"TEXT";
 }
 
 + (NSString *)createTableSqlWith:(NSObject *)model modelSql:(NSString *)modelSql{
-    NSString *mainKeyClass = model.sql_mainKeyClass;
-    if ([mainKeyClass isEqualToString:@"TEXT"]) {
-        NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (%@ TEXT NOT NULL PRIMARY KEY%@",model.sql_tableName,model.sql_mainKey,modelSql.length == 0 ? @"": modelSql];
-        return sql.copy;
-    } else {
-        return [self createTable:model.sql_tableName mainKey:model.sql_mainKey];
+    
+    if(model.sql_mainKey){
+        NSString *mainKeyClass = model.sql_mainKeyClass;
+        if ([mainKeyClass isEqualToString:@"TEXT"]) {
+            NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (%@ TEXT NOT NULL PRIMARY KEY%@",model.sql_tableName,model.sql_mainKey,modelSql.length == 0 ? @"": modelSql];
+            return sql.copy;
+        } else {
+            return [self createTable:model.sql_tableName mainKey:model.sql_mainKey];
+        }
     }
+    return [[NSMutableString alloc] initWithFormat:@"CREATE TABLE %@ (",model.sql_tableName];
 }
 /**
  依据model生成创建表的sql
@@ -1251,7 +1343,7 @@ static YWFMDB *singletonInstance = nil;
 + (NSDictionary *)insertTableSqlModel:(NSObject *)obj{
     NSDictionary *dict = [self propertysValueOnModel:obj];//@{@"name":@"yw"}
     NSMutableString *sqlQuestion = [[NSMutableString alloc] initWithString:@" values ("];
-    NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"insert into %@ (",obj.sql_tableName];
+    NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"insert or replace into %@ (",obj.sql_tableName];
     NSMutableArray *valus = [[NSMutableArray alloc] initWithCapacity:3];
     int i = 0,count = (int)dict.allKeys.count;
     for (NSString *key in dict.allKeys) {
@@ -1274,13 +1366,12 @@ static YWFMDB *singletonInstance = nil;
 + (NSDictionary *)insertTableSqlDict:(NSDictionary *)obj table:(NSString *)tableName{
     NSDictionary *dict = obj;//@{@"name":@"yw"}
     NSMutableString *sqlQuestion = [[NSMutableString alloc] initWithString:@" values ("];
-    NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"insert into %@ (",tableName];
+    NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"insert or replace into %@ (",tableName];
     NSMutableArray *valus = [[NSMutableArray alloc] initWithCapacity:3];
     int i = 0,count = (int)dict.allKeys.count;
     for (NSString *key in dict.allKeys) {
         [sql appendString:key];
         [sqlQuestion appendString:@"?"];
-//        [valus addObject:dict[key]];
          if ([dict[key] isKindOfClass:[NSString class]]) {
             [valus addObject:dict[key]];
         }else if ([dict[key] isKindOfClass:[NSNumber class]]) {
@@ -1527,20 +1618,24 @@ static YWFMDB *singletonInstance = nil;
  */
 + (NSDictionary *)upgradeTable:(NSObject *)model tableExists:(BOOL)exists{
     BOOL needAlert = NO;
-    __block double sql_version = 0;//查询不到
+    double sql_version = 0;//查询不到
     BOOL updateTable = YES;
     if (exists && model.sql_version && [model.sql_version floatValue] > 1) {
+        
         //如果表已经存在，同时model的sql_version存在且大于1的时候，就从中间表查询，该表对应的版本号
-        NSString *sqlVersion = [NSString stringWithFormat:@"select version from yw_sql_version where table_name = '%@'",model.sql_tableName];
-        [singletonInstance.queue inDatabase:^(FMDatabase * _Nonnull db) {
-            FMResultSet *resultSet = [db executeQuery:sqlVersion];
-            while ([resultSet next]) {
-                sql_version = 1.0;//查询到的时候，就默认1
-                //实际值
-                sql_version = [resultSet doubleForColumnIndex:0];
-            }
-            [resultSet close];
-        }];
+//        NSString *sqlVersion = [NSString stringWithFormat:@"select version from yw_sql_version where table_name = '%@'",model.sql_tableName];
+//        [singletonInstance.queue inDatabase:^(FMDatabase * _Nonnull db) {
+//            FMResultSet *resultSet = [db executeQuery:sqlVersion];
+//            while ([resultSet next]) {
+//                sql_version = 1.0;//查询到的时候，就默认1
+//                //实际值
+//                sql_version = [resultSet doubleForColumnIndex:0];
+//            }
+//            [resultSet close];
+//        }];
+        
+        sql_version = [self upgradeTableWithTableName:model.sql_tableName];
+        
         if ([model.sql_version doubleValue] > sql_version) {
             needAlert = YES;
             //开始更新表字段，成功就进行更新数据内容操作
@@ -1557,6 +1652,21 @@ static YWFMDB *singletonInstance = nil;
     return @{@"needAlert":@(needAlert),
              @"updateTable":@(updateTable),
              @"version":[NSString stringWithFormat:@"%f",sql_version]};
+}
++ (double)upgradeTableWithTableName:(NSString *)tableName{
+    __block double sql_version = 0;//查询不到
+    //如果表已经存在，同时model的sql_version存在且大于1的时候，就从中间表查询，该表对应的版本号
+    NSString *sqlVersion = [NSString stringWithFormat:@"select version from yw_sql_version where table_name = '%@'",tableName];
+    [singletonInstance.queue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *resultSet = [db executeQuery:sqlVersion];
+        while ([resultSet next]) {
+            sql_version = 1.0;//查询到的时候，就默认1
+            //实际值
+            sql_version = [resultSet doubleForColumnIndex:0];
+        }
+        [resultSet close];
+    }];
+    return sql_version;
 }
 
 /**
@@ -1875,6 +1985,6 @@ static YWFMDB *singletonInstance = nil;
     NSLog(@"%@", [NSString stringWithFormat:@"\n/**********YWDBTool*************/\n YWDBTool【%@】\n /**********YWDBTool*************/",error]);
 }
 + (NSString *)version{
-    return @"0.4.9";
+    return @"0.5.0";
 }
 @end

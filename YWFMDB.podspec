@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name = 'YWFMDB'
-s.version = '0.4.9'
+s.version = '0.5.0'
 s.summary = '基于FMDB上的二次封装，直接对model进行操作'
 s.homepage = 'https://github.com/flyOfYW/YWFMDB'
 s.license = 'MIT'

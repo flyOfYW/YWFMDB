@@ -49,8 +49,8 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/Library/Caches/YWSqlite.db",NSHomeDirectory()];
     //创建数据库,并连接
-//    [YWFMDB connectionDB:path];
-    [YWFMDB connectionEncryptionDB:path enKey:@"hg_itsg_1024"];
+    [YWFMDB connectionDB:path];
+//    [YWFMDB connectionEncryptionDB:path enKey:@"hg_itsg_1024"];
     [self initData];
 
     [self reloadList];
@@ -263,7 +263,7 @@
     
     UIButton *btn1 = [self createTitle:@"插入一条数据" action:@selector(insertOne:)];
     btn1.tag = 100;
-    btn1.frame = CGRectMake(20, 10, CGRectGetWidth(self.view.frame) -40, 30);
+    btn1.frame = CGRectMake(20, 40, CGRectGetWidth(self.view.frame) -40, 30);
     UIButton *btn2 = [self createTitle:@"插入一组数据" action:@selector(insertOne:)];
     btn2.frame = CGRectMake(20, CGRectGetMaxY(btn1.frame)+10, CGRectGetWidth(self.view.frame) -40, 30);
     btn2.tag = 101;
@@ -274,7 +274,7 @@
     
     UIButton *btn1 = [self createTitle:@"更新name=yw,age改为21" action:@selector(updateOne:)];
     btn1.tag = 102;
-    btn1.frame = CGRectMake(CGRectGetWidth(self.view.frame) + 20, 10, CGRectGetWidth(self.view.frame) - 40, 30);
+    btn1.frame = CGRectMake(CGRectGetWidth(self.view.frame) + 20, 40, CGRectGetWidth(self.view.frame) - 40, 30);
     UIButton *btn2 = [self createTitle:@"更新name=lpl,所有的信息" action:@selector(updateOne:)];
     btn2.frame = CGRectMake(CGRectGetWidth(self.view.frame) + 20, CGRectGetMaxY(btn1.frame)+10, CGRectGetWidth(self.view.frame) -40, 30);
     btn2.tag = 103;
@@ -283,7 +283,7 @@
 }
 - (void)setDeleteView{
     
-    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)*2 + 20, 10, CGRectGetWidth(self.view.frame) - 40, 30)];
+    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)*2 + 20, 40, CGRectGetWidth(self.view.frame) - 40, 30)];
     tf.text = @"test";
     tf.borderStyle = UITextBorderStyleRoundedRect;
     _tf = tf;
@@ -300,7 +300,7 @@
 }
 - (void)setQueryView{
     
-    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)*3 + 20, 10, CGRectGetWidth(self.view.frame) - 40, 30)];
+    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)*3 + 20, 40, CGRectGetWidth(self.view.frame) - 40, 30)];
     tf.text = @"yw";
     tf.borderStyle = UITextBorderStyleRoundedRect;
     _qf = tf;
@@ -407,6 +407,9 @@
         
     }
     
+//    [YWFMDB storageModels:@[@{@"name":@"test",@"menu":@"666"}] table:@"hg_test"];
+//
+    [YWFMDB storageModels:@[@{@"name":@"twst",@"menu":@"666999"}] table:@"hg_test02" mainKey:@"menu" version:1];
 }
 
 - (int)arcrandom{
