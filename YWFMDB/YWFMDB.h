@@ -122,15 +122,6 @@ typedef NS_ENUM(NSInteger, YWFMDBExportType) {
 + (BOOL)storageModels:(NSArray<NSDictionary*>*)list
                 table:(NSString *)tableName
               version:(double)version;
-/// 批量存储dict[如果数据有相同，则替换]
-/// @param list list的数组
-/// @param tableName 表名
-/// @param mainKey 主键
-/// @param version 该表的版本【当该表内部数据结构发现变化，可以增值传入，内部处理】
-+ (BOOL)storageModels:(NSArray<NSDictionary*>*)list
-                table:(NSString *)tableName
-              mainKey:(NSString *)mainKey
-              version:(double)version;
 //MARK: ------------------------------------- 更新 ------------------------------------
 /**
  更新本地存储的model数据

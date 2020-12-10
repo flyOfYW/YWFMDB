@@ -409,7 +409,7 @@
     
 //    [YWFMDB storageModels:@[@{@"name":@"test",@"menu":@"666"}] table:@"hg_test"];
 //
-    [YWFMDB storageModels:@[@{@"name":@"twst",@"menu":@"666999"}] table:@"hg_test02" mainKey:@"menu" version:1];
+    [YWFMDB storageModels:@[@{@"name":@"twst",@"menu":@"666999"}] table:@"hg_test02" version:1];
 }
 
 - (int)arcrandom{

@@ -242,23 +242,12 @@ static YWFMDB *singletonInstance = nil;
 + (BOOL)storageModels:(NSArray<NSDictionary*>*)list
                 table:(NSString *)tableName
               version:(double)version{
-    return [self storageModels:list table:tableName mainKey:nil version:version];
-}
-/// 批量存储dict[如果数据有相同，则替换]
-/// @param list list的数组
-/// @param tableName 表名
-/// @param mainKey 主键
-/// @param version 该表的版本【当该表内部数据结构发现变化，可以增值传入，内部处理】
-+ (BOOL)storageModels:(NSArray<NSDictionary*>*)list
-                table:(NSString *)tableName
-              mainKey:(NSString *)mainKey
-              version:(double)version{
     if (!singletonInstance.queue) {
         [self log:@"请先连接数据库"];
         return NO;
     }
     __block BOOL isSuccess = NO;
-    NSDictionary *creDict = [self createTableDict:list.firstObject table:tableName mainKey:mainKey];
+    NSDictionary *creDict = [self createTableDict:list.firstObject table:tableName mainKey:nil];
     //先判断是否存在表，不存在则创建
     if (![self tableExists:tableName]) {//判断表是否已经存在
         NSString *createSql = [creDict objectForKey:@"createSql"];
@@ -276,7 +265,7 @@ static YWFMDB *singletonInstance = nil;
             NSDictionary *propertys = [creDict objectForKey:@"py"];//新model的字段
             [self upgradeTableMainKey:nil tableName:tableName propertys:propertys];
             //建表成功，则关联表版本
-            [self insertOrUpdate:YES table:tableName version:@(version)];
+            [self insertOrUpdate:sql_version == 0 ? YES : NO table:tableName version:@(version)];
         }
     }
     //批量插入操作，最好使用事务
@@ -1245,10 +1234,6 @@ static YWFMDB *singletonInstance = nil;
         id value = dict[key];
         NSString *clasValue = [self getObjClasValue:value];
         [py setValue:clasValue forKey:key];
-
-//        [sqls addObject:[NSString stringWithFormat:@"%@ TEXT",key]];
-//        [py setValue:@"TEXT" forKey:key];
-        
         if (mainKey && mainKey.length > 0) {
             if ([mainKey isEqual:key]) {
                 mainKeyClass = clasValue;
@@ -1984,6 +1969,6 @@ static YWFMDB *singletonInstance = nil;
     NSLog(@"%@", [NSString stringWithFormat:@"\n/**********YWDBTool*************/\n YWDBTool【%@】\n /**********YWDBTool*************/",error]);
 }
 + (NSString *)version{
-    return @"0.5.2";
+    return @"0.5.3";
 }
 @end
