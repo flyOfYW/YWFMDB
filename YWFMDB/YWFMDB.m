@@ -269,7 +269,7 @@ static YWFMDB *singletonInstance = nil;
             return isSuccess;
         }
         //建表成功，则关联表版本
-        [self insertOrUpdate:YES table:tableName version:@1];
+        [self insertOrUpdate:YES table:tableName version:@(1.0)];
     }else{
         double sql_version = [self upgradeTableWithTableName:tableName];
         if (version > sql_version) {//更新字段
@@ -277,7 +277,6 @@ static YWFMDB *singletonInstance = nil;
             [self upgradeTableMainKey:nil tableName:tableName propertys:propertys];
             //建表成功，则关联表版本
             [self insertOrUpdate:YES table:tableName version:@(version)];
-
         }
     }
     //批量插入操作，最好使用事务
@@ -1985,6 +1984,6 @@ static YWFMDB *singletonInstance = nil;
     NSLog(@"%@", [NSString stringWithFormat:@"\n/**********YWDBTool*************/\n YWDBTool【%@】\n /**********YWDBTool*************/",error]);
 }
 + (NSString *)version{
-    return @"0.5.0";
+    return @"0.5.2";
 }
 @end
